@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emarah Tea | 100% Natural Herbal Tea</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           PROFESSIONAL COLOR SYSTEM
+           ========================================================= */
+        :root {
+            --navy: #032048;
+            --dark-navy: #02152f;
+            --green: #9BC233;
+            --dark-green: #789d20;
+            --light-green: #EAF3D3;
+            --very-light-green: #F5F8EC;
+            --white: #FFFFFF;
+            --text: #263238;
+            --muted: #66727f;
+            --border: #DCE5D0;
+            --shadow-sm: 0 4px 12px rgba(3, 32, 72, 0.08);
+            --shadow-md: 0 8px 25px rgba(3, 32, 72, 0.12);
+            --shadow-lg: 0 15px 40px rgba(3, 32, 72, 0.2);
+            --radius: 16px;
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--very-light-green);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; color: var(--navy); }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        img { max-width: 100%; display: block; height: auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+
+        /* --- SPA Page Transitions --- */
+        .page-section {
+            display: none;
+            animation: fadeSlideIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            padding-top: 80px; /* Space for fixed nav */
+            min-height: 80vh;
+        }
+        .page-section.active { display: block; }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================================
+           UPDATED: GRADIENT NAVIGATION
+           ========================================================= */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            /* Beautiful gradient from Navy to Green */
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 40%, var(--green) 100%);
+            padding: 0.8rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: var(--shadow-lg);
+            border-bottom: none;
+        }
+        .nav-brand img { height: 55px; object-fit: contain; cursor: pointer; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        
+        .nav-links { display: flex; gap: 2.5rem; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a { position: relative; color: var(--white); cursor: pointer; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--green); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        
+        .nav-cta {
+            background: var(--white); color: var(--navy);
+            padding: 0.6rem 1.8rem; border-radius: 50px; font-weight: 600; cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .nav-cta:hover { background: var(--light-green); color: var(--navy); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        
+        /* Mobile Menu */
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--white); cursor: pointer; }
+
+        /* --- Back to Top Button --- */
+        #backToTop {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--navy); color: var(--white);
+            width: 45px; height: 45px; border-radius: 50%;
+            display: none; justify-content: center; align-items: center;
+            font-size: 1.2rem; box-shadow: var(--shadow-lg);
+            z-index: 999; cursor: pointer; transition: 0.3s;
+        }
+        #backToTop:hover { background: var(--green); color: var(--navy); transform: translateY(-3px); }
+
+        /* =========================================================
+           HOME PAGE
+           ========================================================= */
+        
+        /* Hero Section */
+        .hero {
+            min-height: 85vh; display: flex; align-items: center; justify-content: center;
+            background: url('images/banner1.jpeg') no-repeat center center; background-size: cover;
+            position: relative; padding: 4rem 0;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(3, 32, 72, 0.85) 0%, rgba(155, 194, 51, 0.6) 100%);
+            z-index: 1;
+        }
+        .hero-container {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1200px; width: 100%; padding: 0 5%; gap: 3rem;
+        }
+        .hero-content { flex: 1; color: var(--white); }
+        .hero-content h1 {
+            font-size: 4.5rem; color: var(--white); line-height: 1.1; margin-bottom: 0.5rem;
+        }
+        .hero-content h1 span { font-style: italic; color: var(--green); }
+        .hero-content p { font-size: 1.2rem; color: rgba(255,255,255,0.9); margin: 1.5rem 0; max-width: 500px; }
+        
+        .hero-buttons { display: flex; gap: 1.2rem; margin-top: 2rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--green); color: var(--navy);
+            padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; font-size: 1.05rem;
+            box-shadow: 0 8px 25px rgba(155, 194, 51, 0.3); cursor: pointer;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(155, 194, 51, 0.5); }
+        .btn-outline-light {
+            border: 2px solid var(--white); color: var(--white);
+            padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; font-size: 1.05rem; cursor: pointer;
+        }
+        .btn-outline-light:hover { background: var(--white); color: var(--navy); transform: translateY(-2px); }
+        
+        /* =========================================================
+           UPDATED: INFINITE SLIDER WITH PADDING & BORDER RADIUS
+           ========================================================= */
+        .hero-side-images {
+            flex: 1;
+            width: 100%;
+            max-width: 400px; /* This controls the maximum size of the slider */
+            height: 500px;    /* Fixed height to match picture proportion */
+            overflow: hidden;
+            position: relative;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            background: var(--white);
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(200% + 50px);
+            height: 100%;
+            animation: scrollSlider 30s linear infinite; /* Slower, smoother slide */
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused; /* Pause on hover */
+        }
+
+        .slide-item {
+            flex: 0 0 auto;
+            width: 400px;    /* Perfectly matches the container width */
+            height: 100%;    /* Perfectly matches the container height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;   /* <--- Added padding around the image */
+            box-sizing: border-box;
+            background: var(--white);
+        }
+
+        .slide-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills the box perfectly */
+            border-radius: 12px; /* <--- Smooth border radius on the image */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .slide-item img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        @keyframes scrollSlider {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Moves exactly half to create seamless loop */
+        }
+
+        /* Benefits Section */
+        .benefits { padding: 5rem 0; background: var(--white); text-align: center; }
+        .benefits h2 { font-size: 2.8rem; margin-bottom: 1rem; }
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem; margin-top: 3rem;
+        }
+        .benefit-item {
+            background: var(--very-light-green); padding: 2.5rem 1.5rem;
+            border-radius: var(--radius); border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+        .benefit-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--green); background: var(--white); }
+        .benefit-item i { font-size: 2.8rem; color: var(--green); display: block; margin-bottom: 1.2rem; }
+        .benefit-item h4 { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--navy); font-size: 1.1rem; }
+
+        /* =========================================================
+           PAGE 2: ABOUT US (UPDATED WITH YOUR TEXT)
+           ========================================================= */
+        .about-section { padding: 5rem 0; background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; }
+        .about-image img { border-radius: var(--radius); box-shadow: var(--shadow-lg); width: 100%; }
+        
+        .about-content h2 { font-size: 2.8rem; margin-bottom: 1.5rem; }
+        .about-content h3 { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: var(--green); margin-top: 1.5rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .about-content p { color: var(--muted); margin-bottom: 1rem; font-size: 1rem; line-height: 1.8; }
+        .about-content strong { color: var(--navy); }
+
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .stat-box { text-align: center; background: var(--very-light-green); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); }
+        .stat-box h3 { font-family: 'Poppins', sans-serif; font-size: 2rem; color: var(--green); margin-bottom: 0.2rem; }
+        .stat-box p { font-size: 0.9rem; color: var(--muted); }
+
+        /* =========================================================
+           SHOP PAGE
+           ========================================================= */
+        .shop-section { padding: 5rem 0; background: var(--very-light-green); }
+        .shop-header { text-align: center; margin-bottom: 3.5rem; }
+        .shop-header h2 { font-size: 2.8rem; color: var(--navy); }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+        .product-card {
+            background: var(--white); border-radius: var(--radius); padding: 2rem;
+            box-shadow: var(--shadow-sm); text-align: center; border: 1px solid var(--border);
+            transition: all 0.4s ease; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--green); }
+        .product-card img { width: 100%; height: 180px; object-fit: contain; margin: 0 auto 1.5rem; transition: transform 0.4s ease; }
+        .product-card:hover img { transform: scale(1.05); }
+        .product-card h3 { font-size: 1.2rem; font-family: 'Poppins', sans-serif; color: var(--navy); margin-bottom: 0.5rem; }
+        .product-card p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        
+        .btn-whatsapp {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background: #25D366; color: var(--white); padding: 0.8rem 1.8rem; border-radius: 50px;
+            font-weight: 600; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease; cursor: pointer; margin-top: auto;
+        }
+        .btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); color: var(--white); }
+
+        /* =========================================================
+           CONTACT PAGE
+           ========================================================= */
+        .contact-section { padding: 5rem 0; background: var(--white); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h2 { font-size: 2.8rem; margin-bottom: 1.5rem; }
+        .contact-item { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; background: var(--very-light-green); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); transition: 0.3s; }
+        .contact-item:hover { border-color: var(--green); box-shadow: var(--shadow-sm); }
+        .contact-item i { font-size: 2rem; color: var(--green); }
+        .contact-item h4 { font-family: 'Poppins', sans-serif; margin-bottom: 0.3rem; }
+        .contact-item p { color: var(--muted); }
+        
+        .contact-form h3 { font-family: 'Poppins', sans-serif; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);
+            font-family: 'Poppins', sans-serif; font-size: 1rem; background: var(--very-light-green);
+            transition: border 0.3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--green); background: var(--white); }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .btn-submit { background: var(--navy); color: var(--white); padding: 1rem 2.5rem; border-radius: 50px; border: none; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--green); color: var(--navy); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+        footer { background: var(--dark-navy); color: rgba(255,255,255,0.8); padding: 4rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem; }
+        .footer-col h4 { font-family: 'Poppins', sans-serif; color: var(--green); margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: rgba(255,255,255,0.6); transition: 0.2s; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .footer-col ul li a:hover { color: var(--green); padding-left: 5px; }
+        .footer-bottom { text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.4); }
+
+        /* =========================================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================================= */
+
+        /* Tablet / Small Desktop */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 3.8rem; }
+            .hero-container { gap: 2rem; }
+            .hero-side-images { max-width: 350px; height: 450px; }
+            .slide-item { width: 350px; height: 450px; }
+        }
+
+        /* Mobile / Tablets Landscape */
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero-content { padding-right: 0; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; }
+            .hero-content h1 { font-size: 3.2rem; }
+            .hero-content p { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { padding: 0.8rem 2rem; }
+            
+            .hero-side-images { max-width: 100%; width: 100%; height: 400px; }
+            .slide-item { width: 100%; height: 400px; }
+            
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { order: -1; }
+            .about-image img { max-width: 80%; margin: 0 auto; }
+            .contact-form { margin-top: 2rem; }
+
+            /* Mobile Nav */
+            .nav-links {
+                display: none; flex-direction: column; position: absolute; top: 72px; left: 0; width: 100%;
+                background: var(--navy); padding: 2rem; box-shadow: var(--shadow-md);
+                border-bottom: 3px solid var(--green); gap: 1.2rem; align-items: center;
+            }
+            .nav-links.open { display: flex; }
+            .menu-toggle { display: block; }
+        }
+
+        /* Small Phones */
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { width: 100%; text-align: center; padding: 0.8rem 1.5rem; }
+            
+            .hero-side-images { height: 300px; }
+            .slide-item { height: 300px; }
+
+            .product-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .about-stats { grid-template-columns: 1fr; gap: 1rem; }
+            .about-image img { max-width: 100%; }
+            
+            .benefits-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .benefit-item { padding: 1.5rem; }
+
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .footer-col ul li a { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================================
+    GRADIENT NAVIGATION
+    ========================================================= -->
+    <nav>
+        <div class="nav-brand"><img src="images/logo.jpeg" alt="Emarah Tea Logo"></div>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <div class="nav-links">
+            <a onclick="showPage('home')" class="active">Home</a>
+            <a onclick="showPage('about')">About</a>
+            <a onclick="showPage('shop')">Shop</a>
+            <a onclick="showPage('contact')">Contact</a>
+        </div>
+        <a onclick="showPage('shop')" class="nav-cta"><i class="fab fa-whatsapp"></i> Order Now</a>
+    </nav>
+
+    <!-- =========================================================
+    PAGE 1: HOME
+    ========================================================= -->
+    <section id="home" class="page-section active">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>EMARAH <br><span>Herbal Tea</span></h1>
+                    <p>Natural goodness in every sip. Boost immunity, aid digestion, and refresh your mind with our premium herbal blends.</p>
+                    <div class="hero-buttons">
+                        <a onclick="showPage('shop')" class="btn-primary"><i class="fas fa-leaf"></i> Choose Nature</a>
+                        <a onclick="showPage('about')" class="btn-outline-light">Learn More</a>
+                    </div>
+                    <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; color: white; font-size: 0.9rem; justify-content: center;">
+                        <span><i class="fas fa-check-circle" style="color: var(--green);"></i> 100% Natural</span>
+                        <span><i class="fas fa-mug-hot" style="color: var(--green);"></i> Caffeine Free</span>
+                        <span><i class="fas fa-ban" style="color: var(--green);"></i> No Artificial Colors</span>
+                    </div>
+                </div>
+
+                <!-- =========================================================
+                     INFINITE SLIDER (All images, padding, border radius)
+                     ========================================================= -->
+                <div class="hero-side-images">
+                    <div class="slider-track">
+                        <!-- First Set of Images -->
+                        <div class="slide-item"><img src="images/banner2.jpeg" alt="Collection"></div>
+                        <div class="slide-item"><img src="images/banner3.jpeg" alt="Collection"></div>
+                        <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger"></div>
+                        <div class="slide-item"><img src="images/ginger.jpeg" alt="Ginger Tea"></div>
+                        <div class="slide-item"><img src="images/hibiscus.jpeg" alt="Hibiscus Tea"></div>
+                        <div class="slide-item"><img src="images/lemon.jpeg" alt="Pure Lemon Tea"></div>
+                        <div class="slide-item"><img src="images/mint tea.jpeg" alt="Mint Tea"></div>
+                        <div class="slide-item"><img src="images/doum fruit.jpeg" alt="Doum Fruit"></div>
+                        <div class="slide-item"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry"></div>
+
+                        <!-- Duplicated Set for Seamless Loop -->
+                        <div class="slide-item"><img src="images/banner2.jpeg" alt="Collection"></div>
+                        <div class="slide-item"><img src="images/banner3.jpeg" alt="Collection"></div>
+                        <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger"></div>
+                        <div class="slide-item"><img src="images/ginger.jpeg" alt="Ginger Tea"></div>
+                        <div class="slide-item"><img src="images/hibiscus.jpeg" alt="Hibiscus Tea"></div>
+                        <div class="slide-item"><img src="images/lemon.jpeg" alt="Pure Lemon Tea"></div>
+                        <div class="slide-item"><img src="images/mint tea.jpeg" alt="Mint Tea"></div>
+                        <div class="slide-item"><img src="images/doum fruit.jpeg" alt="Doum Fruit"></div>
+                        <div class="slide-item"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits container">
+            <h2>Natural Goodness</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item"><i class="fas fa-shield-alt"></i><h4>Boosts Immunity</h4></div>
+                <div class="benefit-item"><i class="fas fa-utensils"></i><h4>Aids Digestion</h4></div>
+                <div class="benefit-item"><i class="fas fa-head-side-cough"></i><h4>Relieves Cough & Cold</h4></div>
+                <div class="benefit-item"><i class="fas fa-broom"></i><h4>Detoxifies the Body</h4></div>
+                <div class="benefit-item"><i class="fas fa-brain"></i><h4>Refreshes Mind & Body</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+    PAGE 2: ABOUT (UPDATED WITH YOUR TEXT)
+    ========================================================= -->
+    <section id="about" class="page-section about-section">
+        <div class="container about-grid">
+            <div class="about-content">
+                <h2>About Our Company</h2>
+                
+                <h3><i class="fas fa-building" style="color: var(--green);"></i> The Company</h3>
+                <p><strong>EMARAH INVESTMENT LTD</strong> is a limited liability company whose registered address is at Dawakin Dakata opposite Idi Customs Poultry Farm, Kano State, Nigeria. Established in the year <strong>2022</strong>, we were early to recognize the opportunity for the production of tea flavors and other matters ancillary to produces, distributes, and retails.</p>
+
+                <h3><i class="fas fa-bullseye" style="color: var(--green);"></i> Our Mission</h3>
+                <p>• Provide high quality and affordable products<br>
+                • Create and produce the products that are beneficial to the people<br>
+                • Respond immediately to the changing need of our customers<br>
+                • Achieve complete customer satisfaction<br>
+                • Improve our service continuously</p>
+
+                <h3><i class="fas fa-eye" style="color: var(--green);"></i> Our Vision</h3>
+                <p>The vision at EMARAH INVESTMENT LTD is of a highly consumable product that is beneficial to its customers, and ready to make things that are useful, with quick response to customers' needs and concerns.</p>
+
+                <h3><i class="fas fa-flask" style="color: var(--green);"></i> Experience</h3>
+                <p>Our Company has extensive experience in making tea flavors and other matters ancillary to it, such as Hibiscus Tea, Moringa Tea, Black Tea, and Mango Tea on natural sub-herbal tea. We manufacture our products with natural substances <strong>without using anything that causes side effects</strong>.</p>
+
+                <h3><i class="fas fa-sync-alt" style="color: var(--green);"></i> Products Cycles</h3>
+                <p>Our company's products circulate across the majority of states in the Northern part of the country, which has gained the recognition of our customers and consumers of our product.</p>
+
+                <div class="about-stats">
+                    <div class="stat-box"><h3>2022</h3><p>Year Established</p></div>
+                    <div class="stat-box"><h3>7+</h3><p>Exotic Variants</p></div>
+                    <div class="stat-box"><h3>100%</h3><p>Natural Ingredients</p></div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="images/banner1.jpeg" alt="About Emarah Tea">
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+    PAGE 3: SHOP
+    ========================================================= -->
+    <section id="shop" class="page-section shop-section">
+        <div class="container">
+            <div class="shop-header">
+                <h2>Our Premium Variants</h2>
+                <p>Sip the freshness with our thoughtfully crafted herbal blends.</p>
+            </div>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger">
+                    <h3>Lemon & Ginger</h3>
+                    <p>Refreshes, revitalizes and supports healthy digestion.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Lemon%20and%20Ginger%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="images/ginger.jpeg" alt="Ginger Tea">
+                    <h3>Ginger Tea</h3>
+                    <p>Warming, soothes the throat, and boosts circulation.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Ginger%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="images/hibiscus.jpeg" alt="Hibiscus Tea">
+                    <h3>Hibiscus Tea</h3>
+                    <p>Supports heart health and rich in antioxidants.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="images/lemon.jpeg" alt="Pure Lemon Tea">
+                    <h3>Pure Lemon Tea</h3>
+                    <p>Vitamin C rich, refreshing, and energizing.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Pure%20Lemon%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <img src="images/mint tea.jpeg" alt="Mint Tea">
+                    <h3>Mint Tea</h3>
+                    <p>Soothes, cools and refreshes your senses.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Mint%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <img src="images/doum fruit.jpeg" alt="Doum Fruit Tea">
+                    <h3>Doum Fruit</h3>
+                    <p>Exotic natural fruit flavor with unique health properties.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Doum%20Fruit%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry">
+                    <h3>Hibiscus & Strawberry</h3>
+                    <p>Sweet and fruity blend, packed with flavor.</p>
+                    <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20and%20Strawberry%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+    PAGE 4: CONTACT
+    ========================================================= -->
+    <section id="contact" class="page-section contact-section">
+        <div class="container contact-grid">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p style="color: var(--muted); margin-bottom: 2rem;">Have questions about our teas? We'd love to hear from you!</p>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div><h4>WhatsApp</h4><p>+234 803 443 4320</p></div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div><h4>Email</h4><p>emarahinvestment@gmail.com</p></div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div><h4>Location</h4><p>Kano State, Nigeria</p></div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form>
+                    <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+                    <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+    FOOTER
+    ========================================================= -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Emarah Tea</h4>
+                <p style="opacity: 0.8; font-size: 0.95rem;">Nature's goodness in a cup. 100% natural ingredients to refresh your body and mind.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a onclick="showPage('shop')"><i class="fas fa-shopping-bag"></i> All Teas</a></li>
+                    <li><a onclick="showPage('about')"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 Emarah Tea. All rights reserved. <i class="fas fa-recycle" style="color: var(--green);"></i> Keep Environment Clean.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- =========================================================
+    JAVASCRIPT
+    ========================================================= -->
+    <script>
+        // 1. IMPORTANT: Set your WhatsApp Business number here (No '+' sign)
+        const phoneNumber = "2348034434320"; 
+
+        // 2. Auto-Set Favicon (Updated Path)
+        (function setFavicon() {
+            const link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/jpeg';
+            link.href = 'images/logo.jpeg';
+            document.head.appendChild(link);
+        })();
+
+        // 3. Single Page Application (SPA) Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            
+            // Show target page
+            const target = document.getElementById(pageId);
+            if(target) target.classList.add('active');
+
+            // Update nav links active state
+            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-links a[onclick="showPage('${pageId}')"]`);
+            if(activeLink) activeLink.classList.add('active');
+
+            // Close mobile menu if open
+            document.querySelector('.nav-links').classList.remove('open');
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 4. Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('open');
+        });
+
+        // 5. Back to Top Button Visibility
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        console.log("Emarah Tea Website Loaded with Updated About Section.");
+    </script>
+</body>
+</html>
