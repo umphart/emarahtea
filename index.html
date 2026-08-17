@@ -67,12 +67,11 @@
         }
 
         /* =========================================================
-           UPDATED: GRADIENT NAVIGATION
+           GRADIENT NAVIGATION
            ========================================================= */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             z-index: 1000;
-            /* Beautiful gradient from Navy to Green */
             background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 40%, var(--green) 100%);
             padding: 0.8rem 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -152,13 +151,13 @@
         .btn-outline-light:hover { background: var(--white); color: var(--navy); transform: translateY(-2px); }
         
         /* =========================================================
-           UPDATED: INFINITE SLIDER WITH PADDING & BORDER RADIUS
+           INFINITE SLIDER
            ========================================================= */
         .hero-side-images {
             flex: 1;
             width: 100%;
-            max-width: 400px; /* This controls the maximum size of the slider */
-            height: 500px;    /* Fixed height to match picture proportion */
+            max-width: 400px;
+            height: 500px;
             overflow: hidden;
             position: relative;
             border-radius: var(--radius);
@@ -170,21 +169,19 @@
             display: flex;
             width: calc(200% + 50px);
             height: 100%;
-            animation: scrollSlider 30s linear infinite; /* Slower, smoother slide */
+            animation: scrollSlider 30s linear infinite;
         }
 
-        .slider-track:hover {
-            animation-play-state: paused; /* Pause on hover */
-        }
+        .slider-track:hover { animation-play-state: paused; }
 
         .slide-item {
             flex: 0 0 auto;
-            width: 400px;    /* Perfectly matches the container width */
-            height: 100%;    /* Perfectly matches the container height */
+            width: 400px;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;   /* <--- Added padding around the image */
+            padding: 10px;
             box-sizing: border-box;
             background: var(--white);
         }
@@ -192,8 +189,8 @@
         .slide-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures image fills the box perfectly */
-            border-radius: 12px; /* <--- Smooth border radius on the image */
+            object-fit: cover;
+            border-radius: 12px;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -205,7 +202,7 @@
 
         @keyframes scrollSlider {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Moves exactly half to create seamless loop */
+            100% { transform: translateX(-50%); }
         }
 
         /* Benefits Section */
@@ -225,7 +222,7 @@
         .benefit-item h4 { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--navy); font-size: 1.1rem; }
 
         /* =========================================================
-           PAGE 2: ABOUT US (UPDATED WITH YOUR TEXT)
+           PAGE 2: ABOUT US
            ========================================================= */
         .about-section { padding: 5rem 0; background: var(--white); }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; }
@@ -240,6 +237,42 @@
         .stat-box { text-align: center; background: var(--very-light-green); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); }
         .stat-box h3 { font-family: 'Poppins', sans-serif; font-size: 2rem; color: var(--green); margin-bottom: 0.2rem; }
         .stat-box p { font-size: 0.9rem; color: var(--muted); }
+
+        /* =========================================================
+           NEW: TEAM MEMBERS SECTION
+           ========================================================= */
+        .team-section { padding: 4rem 0 5rem; background: var(--very-light-green); text-align: center; }
+        .team-section h2 { font-size: 2.8rem; margin-bottom: 1rem; }
+        .team-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem; margin-top: 3rem;
+        }
+        .team-card {
+            background: var(--white); padding: 2.5rem 1.5rem;
+            border-radius: var(--radius); border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); transition: all 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .team-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 4px; background: var(--green); transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .team-card:hover::before { transform: scaleX(1); }
+        .team-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--green); }
+        
+        .team-icon {
+            width: 80px; height: 80px; margin: 0 auto 1.2rem;
+            background: var(--very-light-green); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--green); transition: 0.4s;
+            border: 2px solid var(--border);
+        }
+        .team-card:hover .team-icon { background: var(--green); color: var(--white); border-color: var(--green); transform: scale(1.05); }
+        
+        .team-card h4 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.3rem; }
+        .team-card .role { font-size: 0.9rem; color: var(--green); font-weight: 500; margin-bottom: 0.8rem; }
+        .team-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
         /* =========================================================
            SHOP PAGE
@@ -310,7 +343,6 @@
            RESPONSIVE MEDIA QUERIES
            ========================================================= */
 
-        /* Tablet / Small Desktop */
         @media (max-width: 1024px) {
             .hero-content h1 { font-size: 3.8rem; }
             .hero-container { gap: 2rem; }
@@ -318,7 +350,6 @@
             .slide-item { width: 350px; height: 450px; }
         }
 
-        /* Mobile / Tablets Landscape */
         @media (max-width: 768px) {
             .hero-container { flex-direction: column; text-align: center; }
             .hero-content { padding-right: 0; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; }
@@ -345,7 +376,6 @@
             .menu-toggle { display: block; }
         }
 
-        /* Small Phones */
         @media (max-width: 480px) {
             .hero-content h1 { font-size: 2.5rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
@@ -360,6 +390,8 @@
             
             .benefits-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
             .benefit-item { padding: 1.5rem; }
+            
+            .team-grid { grid-template-columns: 1fr; }
 
             .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
             .footer-col ul li a { justify-content: center; }
@@ -405,12 +437,10 @@
                     </div>
                 </div>
 
-                <!-- =========================================================
-                     INFINITE SLIDER (All images, padding, border radius)
-                     ========================================================= -->
+                <!-- Infinite Slider -->
                 <div class="hero-side-images">
                     <div class="slider-track">
-                        <!-- First Set of Images -->
+                        <!-- First Set -->
                         <div class="slide-item"><img src="images/banner2.jpeg" alt="Collection"></div>
                         <div class="slide-item"><img src="images/banner3.jpeg" alt="Collection"></div>
                         <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger"></div>
@@ -420,8 +450,7 @@
                         <div class="slide-item"><img src="images/mint tea.jpeg" alt="Mint Tea"></div>
                         <div class="slide-item"><img src="images/doum fruit.jpeg" alt="Doum Fruit"></div>
                         <div class="slide-item"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry"></div>
-
-                        <!-- Duplicated Set for Seamless Loop -->
+                        <!-- Duplicated Set -->
                         <div class="slide-item"><img src="images/banner2.jpeg" alt="Collection"></div>
                         <div class="slide-item"><img src="images/banner3.jpeg" alt="Collection"></div>
                         <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger"></div>
@@ -450,40 +479,78 @@
     </section>
 
     <!-- =========================================================
-    PAGE 2: ABOUT (UPDATED WITH YOUR TEXT)
+    PAGE 2: ABOUT (UPDATED WITH TEAM SECTION)
     ========================================================= -->
-    <section id="about" class="page-section about-section">
-        <div class="container about-grid">
-            <div class="about-content">
-                <h2>About Our Company</h2>
-                
-                <h3><i class="fas fa-building" style="color: var(--green);"></i> The Company</h3>
-                <p><strong>EMARAH INVESTMENT LTD</strong> is a limited liability company whose registered address is at Dawakin Dakata opposite Idi Customs Poultry Farm, Kano State, Nigeria. Established in the year <strong>2022</strong>, we were early to recognize the opportunity for the production of tea flavors and other matters ancillary to produces, distributes, and retails.</p>
+    <section id="about" class="page-section">
+        <div class="about-section">
+            <div class="container about-grid">
+                <div class="about-content">
+                    <h2>About Our Company</h2>
+                    
+                    <h3><i class="fas fa-building" style="color: var(--green);"></i> The Company</h3>
+                    <p><strong>EMARAH INVESTMENT LTD</strong> is a limited liability company whose registered address is at Dawakin Dakata opposite Idi Customs Poultry Farm, Kano State, Nigeria. Established in the year <strong>2022</strong>, we were early to recognize the opportunity for the production of tea flavors and other matters ancillary to produces, distributes, and retails.</p>
 
-                <h3><i class="fas fa-bullseye" style="color: var(--green);"></i> Our Mission</h3>
-                <p>• Provide high quality and affordable products<br>
-                • Create and produce the products that are beneficial to the people<br>
-                • Respond immediately to the changing need of our customers<br>
-                • Achieve complete customer satisfaction<br>
-                • Improve our service continuously</p>
+                    <h3><i class="fas fa-bullseye" style="color: var(--green);"></i> Our Mission</h3>
+                    <p>• Provide high quality and affordable products<br>
+                    • Create and produce the products that are beneficial to the people<br>
+                    • Respond immediately to the changing need of our customers<br>
+                    • Achieve complete customer satisfaction<br>
+                    • Improve our service continuously</p>
 
-                <h3><i class="fas fa-eye" style="color: var(--green);"></i> Our Vision</h3>
-                <p>The vision at EMARAH INVESTMENT LTD is of a highly consumable product that is beneficial to its customers, and ready to make things that are useful, with quick response to customers' needs and concerns.</p>
+                    <h3><i class="fas fa-eye" style="color: var(--green);"></i> Our Vision</h3>
+                    <p>The vision at EMARAH INVESTMENT LTD is of a highly consumable product that is beneficial to its customers, and ready to make things that are useful, with quick response to customers' needs and concerns.</p>
 
-                <h3><i class="fas fa-flask" style="color: var(--green);"></i> Experience</h3>
-                <p>Our Company has extensive experience in making tea flavors and other matters ancillary to it, such as Hibiscus Tea, Moringa Tea, Black Tea, and Mango Tea on natural sub-herbal tea. We manufacture our products with natural substances <strong>without using anything that causes side effects</strong>.</p>
+                    <h3><i class="fas fa-flask" style="color: var(--green);"></i> Experience</h3>
+                    <p>Our Company has extensive experience in making tea flavors and other matters ancillary to it, such as Hibiscus Tea, Moringa Tea, Black Tea, and Mango Tea on natural sub-herbal tea. We manufacture our products with natural substances <strong>without using anything that causes side effects</strong>.</p>
 
-                <h3><i class="fas fa-sync-alt" style="color: var(--green);"></i> Products Cycles</h3>
-                <p>Our company's products circulate across the majority of states in the Northern part of the country, which has gained the recognition of our customers and consumers of our product.</p>
+                    <h3><i class="fas fa-sync-alt" style="color: var(--green);"></i> Products Cycles</h3>
+                    <p>Our company's products circulate across the majority of states in the Northern part of the country, which has gained the recognition of our customers and consumers of our product.</p>
 
-                <div class="about-stats">
-                    <div class="stat-box"><h3>2022</h3><p>Year Established</p></div>
-                    <div class="stat-box"><h3>7+</h3><p>Exotic Variants</p></div>
-                    <div class="stat-box"><h3>100%</h3><p>Natural Ingredients</p></div>
+                    <div class="about-stats">
+                        <div class="stat-box"><h3>2022</h3><p>Year Established</p></div>
+                        <div class="stat-box"><h3>7+</h3><p>Exotic Variants</p></div>
+                        <div class="stat-box"><h3>100%</h3><p>Natural Ingredients</p></div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/banner1.jpeg" alt="About Emarah Tea">
                 </div>
             </div>
-            <div class="about-image">
-                <img src="images/banner1.jpeg" alt="About Emarah Tea">
+        </div>
+
+        <!-- =========================================================
+             NEW TEAM SECTION
+             ========================================================= -->
+        <div class="team-section">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <p style="color: var(--muted); margin-bottom: 0.5rem;">The dedicated people behind Emarah Tea's success.</p>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-icon"><i class="fas fa-user-tie"></i></div>
+                        <h4>John Doe</h4>
+                        <div class="role">CEO & Founder</div>
+                        <p>Visionary leader with a passion for natural health and sustainable tea production.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-icon"><i class="fas fa-user-cog"></i></div>
+                        <h4>Jane Smith</h4>
+                        <div class="role">Production Manager</div>
+                        <p>Oversees the entire manufacturing process ensuring 100% quality and freshness.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-icon"><i class="fas fa-user-tag"></i></div>
+                        <h4>Michael Brown</h4>
+                        <div class="role">Marketing Lead</div>
+                        <p>Brings Emarah Tea to the people, spreading the message of natural wellness.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-icon"><i class="fas fa-user-check"></i></div>
+                        <h4>Sarah Johnson</h4>
+                        <div class="role">Quality Assurance</div>
+                        <p>Ensures every cup meets the highest standards of purity and taste.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -498,49 +565,42 @@
                 <p>Sip the freshness with our thoughtfully crafted herbal blends.</p>
             </div>
             <div class="product-grid">
-                <!-- Product 1 -->
                 <div class="product-card">
                     <img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger">
                     <h3>Lemon & Ginger</h3>
                     <p>Refreshes, revitalizes and supports healthy digestion.</p>
                     <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Lemon%20and%20Ginger%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
                 </div>
-                <!-- Product 2 -->
                 <div class="product-card">
                     <img src="images/ginger.jpeg" alt="Ginger Tea">
                     <h3>Ginger Tea</h3>
                     <p>Warming, soothes the throat, and boosts circulation.</p>
                     <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Ginger%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
                 </div>
-                <!-- Product 3 -->
                 <div class="product-card">
                     <img src="images/hibiscus.jpeg" alt="Hibiscus Tea">
                     <h3>Hibiscus Tea</h3>
                     <p>Supports heart health and rich in antioxidants.</p>
                     <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
                 </div>
-                <!-- Product 4 -->
                 <div class="product-card">
                     <img src="images/lemon.jpeg" alt="Pure Lemon Tea">
                     <h3>Pure Lemon Tea</h3>
                     <p>Vitamin C rich, refreshing, and energizing.</p>
                     <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Pure%20Lemon%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
                 </div>
-                <!-- Product 5 -->
                 <div class="product-card">
                     <img src="images/mint tea.jpeg" alt="Mint Tea">
                     <h3>Mint Tea</h3>
                     <p>Soothes, cools and refreshes your senses.</p>
                     <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Mint%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
                 </div>
-                <!-- Product 6 -->
                 <div class="product-card">
                     <img src="images/doum fruit.jpeg" alt="Doum Fruit Tea">
                     <h3>Doum Fruit</h3>
                     <p>Exotic natural fruit flavor with unique health properties.</p>
                     <a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Doum%20Fruit%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
                 </div>
-                <!-- Product 7 -->
                 <div class="product-card">
                     <img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry">
                     <h3>Hibiscus & Strawberry</h3>
@@ -627,7 +687,7 @@
         // 1. IMPORTANT: Set your WhatsApp Business number here (No '+' sign)
         const phoneNumber = "2348034434320"; 
 
-        // 2. Auto-Set Favicon (Updated Path)
+        // 2. Auto-Set Favicon
         (function setFavicon() {
             const link = document.createElement('link');
             link.rel = 'icon';
@@ -672,7 +732,7 @@
             }
         });
 
-        console.log("Emarah Tea Website Loaded with Updated About Section.");
+        console.log("Emarah Tea Website Loaded with Team Section.");
     </script>
 </body>
 </html>
