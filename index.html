@@ -111,6 +111,13 @@
     .hero-content { flex:1; color:var(--white); }
     .hero-content h1 { font-size:4.5rem; color:var(--white); line-height:1.1; margin-bottom:0.5rem; }
     .hero-content h1 span { font-style:italic; color:var(--green); }
+    .hero-content .tagline {
+      font-size:1.2rem;
+      color:rgba(255,255,255,0.9);
+      margin:0.5rem 0 1.5rem 0;
+      font-weight:300;
+      letter-spacing:1px;
+    }
     .hero-content p { font-size:1.2rem; color:rgba(255,255,255,0.9); margin:1.5rem 0; max-width:500px; }
     .hero-buttons { display:flex; gap:1.2rem; margin-top:2rem; flex-wrap:wrap; }
     .btn-primary {
@@ -127,7 +134,7 @@
     }
     .btn-outline-light:hover { background:var(--white); color:var(--navy); transform:translateY(-2px); }
 
-    /* ----- INFINITE SLIDER (resized to fit images) ----- */
+    /* ----- INFINITE SLIDER (faster speed) ----- */
     .hero-side-images {
       flex: 0 0 auto;
       width: 100%;
@@ -144,7 +151,7 @@
       display:flex;
       width: calc(200% + 50px);
       height:100%;
-      animation: scrollSlider 30s linear infinite;
+      animation: scrollSlider 18s linear infinite; /* faster: 18s instead of 30s */
     }
     .slider-track:hover { animation-play-state:paused; }
     .slide-item {
@@ -340,16 +347,72 @@
     .footer-col ul li a:hover { color:var(--green); padding-left:5px; }
     .footer-bottom { text-align:center; font-size:0.9rem; color:rgba(255,255,255,0.4); }
 
-    /* ----- RESPONSIVE ----- */
+    /* =========================================================
+       RESPONSIVE: hide "Emarah" text on small screens + extra padding
+       ========================================================= */
+    @media (max-width: 768px) {
+      .hero-content h1 .brand-hide {
+        display: none;
+      }
+      .hero-content h1 {
+        font-size: 3.2rem;
+      }
+      .hero-content .tagline {
+        font-size: 1rem;
+        margin-top: 0.2rem;
+      }
+      /* only 100% natural badge – hide others */
+      .hero-content .badge-wrap .badge-item:not(.badge-natural) {
+        display: none;
+      }
+      /* extra padding to push content down on small screens */
+      .hero {
+        padding: 6rem 0 4rem 0;
+      }
+      .hero-container {
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .hero-content .tagline {
+        font-size: 0.9rem;
+      }
+      .hero {
+        padding: 7rem 0 4rem 0;
+      }
+    }
+
+    /* badge container */
+    .badge-wrap {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: white;
+      font-size: 0.9rem;
+      justify-content: center;
+    }
+    .badge-wrap .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-wrap .badge-item i {
+      color: var(--green);
+    }
+
+    /* ----- responsive slider & others ----- */
     @media (max-width:1024px) {
-      .hero-content h1 { font-size:3.8rem; }
       .hero-side-images { max-width:350px; aspect-ratio:1/1; }
       .slide-item { width:350px; }
     }
     @media (max-width:768px) {
       .hero-container { flex-direction:column; text-align:center; }
       .hero-content { padding-right:0; margin-bottom:2rem; display:flex; flex-direction:column; align-items:center; }
-      .hero-content h1 { font-size:3.2rem; }
       .hero-content p { max-width:100%; }
       .hero-buttons { justify-content:center; }
       .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { padding:0.8rem 2rem; }
@@ -368,7 +431,6 @@
       .menu-toggle { display:block; }
     }
     @media (max-width:480px) {
-      .hero-content h1 { font-size:2.5rem; }
       .hero-buttons { flex-direction:column; width:100%; }
       .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { width:100%; text-align:center; padding:0.8rem 1.5rem; }
       .hero-side-images { aspect-ratio:1/1; }
@@ -405,19 +467,23 @@
     <div class="hero-overlay"></div>
     <div class="hero-container">
       <div class="hero-content">
-        <h1>EMARAH <br /><span>Tea</span></h1>
+        <h1>
+          <span> EMARAH Tea</span>
+        </h1>
+        <div class="tagline">Sip the freshness</div>
         <p>Natural goodness in every sip. Boost immunity, aid digestion, and refresh your mind with our premium herbal blends.</p>
         <div class="hero-buttons">
           <a href="#shop" class="btn-primary"><i class="fas fa-leaf"></i> Choose Nature</a>
           <a href="#about" class="btn-outline-light">Learn More</a>
         </div>
-        <div style="margin-top:2rem; display:flex; flex-wrap:wrap; gap:1.5rem; color:white; font-size:0.9rem; justify-content:center;">
-          <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 100% Natural</span>
-          <span><i class="fas fa-mug-hot" style="color:var(--green);"></i> Caffeine Free</span>
-          <span><i class="fas fa-ban" style="color:var(--green);"></i> No Artificial Colors</span>
+        <!-- only 100% natural badge visible on small screens, all on large -->
+        <div class="badge-wrap">
+          <span class="badge-item badge-natural"><i class="fas fa-check-circle"></i> 100% Natural</span>
+          <span class="badge-item"><i class="fas fa-mug-hot"></i> Caffeine Free</span>
+          <span class="badge-item"><i class="fas fa-ban"></i> No Artificial Colors</span>
         </div>
       </div>
-      <!-- Infinite Slider (only tea images, resized container) -->
+      <!-- Infinite Slider (only tea images, faster speed) -->
       <div class="hero-side-images">
         <div class="slider-track">
           <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger" /></div>
@@ -678,7 +744,8 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    console.log("Emarah Tea – slider resized to fit images (aspect-ratio 1/1, object-fit:contain).");
+    console.log("Emarah Tea – extra padding on mobile, slider speed increased to 18s.");
   </script>
 </body>
 </html>
+
