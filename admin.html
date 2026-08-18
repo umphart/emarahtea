@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emarah Tea | Admin Dashboard</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ----- RESET & VARIABLES ----- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --navy: #032048;
+      --dark-navy: #02152f;
+      --green: #9BC233;
+      --dark-green: #789d20;
+      --light-green: #EAF3D3;
+      --very-light-green: #F5F8EC;
+      --white: #FFFFFF;
+      --text: #1a2332;
+      --muted: #6b7a8f;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --transition: all 0.25s ease;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0f1a;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1.5rem;
+      position:relative;
+    }
+    /* Full-page background image with dark overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('images/banner1.jpeg') no-repeat center center;
+      background-size: cover;
+      filter: blur(6px) brightness(0.35);
+      z-index: 0;
+    }
+    /* scrollbar */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); border-radius:8px; }
+    ::-webkit-scrollbar-thumb { background:var(--green); border-radius:8px; }
+
+    .admin-wrapper {
+      width:100%;
+      max-width:1200px;
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    /* ----- LOGIN CARD ----- */
+    .login-card {
+      max-width:420px;
+      margin:0 auto;
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(12px);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-lg), 0 0 40px rgba(0,0,0,0.3);
+      padding:2.5rem 2rem;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.15);
+    }
+    .login-card .logo {
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      object-fit:cover;
+      margin:0 auto 1rem;
+      display:block;
+      box-shadow:0 4px 20px rgba(0,0,0,0.2);
+      border:3px solid var(--green);
+    }
+    .login-card h1 {
+      font-size:1.6rem;
+      font-weight:700;
+      color:var(--navy);
+      margin-bottom:0.25rem;
+    }
+    .login-card h1 span { color:var(--green); }
+    .login-card p.sub {
+      color:var(--muted);
+      font-size:0.9rem;
+      margin-bottom:1.8rem;
+    }
+    .login-card input {
+      width:100%;
+      padding:0.85rem 1rem;
+      border:1.5px solid var(--border);
+      border-radius:var(--radius-sm);
+      font-family:'Inter',sans-serif;
+      font-size:0.95rem;
+      transition:var(--transition);
+      background:#fafbfc;
+    }
+    .login-card input:focus {
+      outline:none;
+      border-color:var(--green);
+      background:var(--white);
+      box-shadow:0 0 0 4px rgba(155,194,51,0.15);
+    }
+    .login-card .error {
+      color:#e74c3c;
+      font-size:0.85rem;
+      margin-top:0.5rem;
+      min-height:1.5rem;
+    }
+    .login-card .admin-btn {
+      width:100%;
+      padding:0.85rem;
+      background:var(--green);
+      color:var(--navy);
+      border:none;
+      border-radius:var(--radius-sm);
+      font-weight:600;
+      font-size:1rem;
+      cursor:pointer;
+      transition:var(--transition);
+      margin-top:0.5rem;
+    }
+    .login-card .admin-btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 6px 25px rgba(155,194,51,0.4);
+    }
+    .login-card .hint {
+      margin-top:1.2rem;
+      font-size:0.8rem;
+      color:var(--muted);
+    }
+    .login-card .hint strong { color:var(--navy); }
+
+    /* ----- DASHBOARD (after login) ----- */
+    .dashboard {
+      display:none;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(16px);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-lg), 0 0 50px rgba(0,0,0,0.25);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    /* header */
+    .dash-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1.25rem 2rem;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      flex-wrap:wrap;
+      gap:1rem;
+      background:rgba(255,255,255,0.5);
+    }
+    .dash-header .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .dash-header .brand img {
+      height:46px;
+      width:46px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid var(--green);
+    }
+    .dash-header .brand h2 {
+      font-size:1.3rem;
+      font-weight:700;
+      color:var(--navy);
+    }
+    .dash-header .brand h2 span { color:var(--green); }
+    .dash-header .actions {
+      display:flex;
+      align-items:center;
+      gap:0.75rem;
+    }
+    .dash-header .actions .back-link {
+      color:var(--muted);
+      text-decoration:none;
+      font-size:0.9rem;
+      font-weight:500;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      transition:var(--transition);
+      padding:6px 16px;
+      border-radius:50px;
+      background:rgba(0,0,0,0.04);
+    }
+    .dash-header .actions .back-link:hover {
+      background:var(--light-green);
+      color:var(--navy);
+    }
+    .dash-header .actions .logout-btn {
+      background:none;
+      border:none;
+      color:var(--muted);
+      font-size:0.9rem;
+      font-weight:500;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 16px;
+      border-radius:50px;
+      transition:var(--transition);
+    }
+    .dash-header .actions .logout-btn:hover {
+      background:#fee2e2;
+      color:#dc2626;
+    }
+
+    /* stats row – enhanced */
+    .stats-row {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+      gap:1rem;
+      padding:1.5rem 2rem;
+      background:rgba(3,32,72,0.03);
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+    .stat-card {
+      background:rgba(255,255,255,0.7);
+      backdrop-filter:blur(4px);
+      padding:1.1rem 1.25rem;
+      border-radius:var(--radius-sm);
+      box-shadow:var(--shadow-sm);
+      display:flex;
+      align-items:center;
+      gap:14px;
+      border:1px solid rgba(255,255,255,0.5);
+      transition:var(--transition);
+    }
+    .stat-card:hover {
+      transform:translateY(-2px);
+      box-shadow:var(--shadow-md);
+      border-color:var(--green);
+    }
+    .stat-card .icon {
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background:var(--light-green);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--green);
+      font-size:1.3rem;
+      flex-shrink:0;
+    }
+    .stat-card .info .number {
+      font-size:1.6rem;
+      font-weight:700;
+      color:var(--navy);
+      line-height:1.2;
+    }
+    .stat-card .info .label {
+      font-size:0.8rem;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .stat-card .info .trend {
+      font-size:0.7rem;
+      font-weight:600;
+      margin-left:6px;
+      padding:2px 8px;
+      border-radius:50px;
+      background:var(--light-green);
+      color:var(--dark-green);
+    }
+
+    /* tabs */
+    .dash-tabs {
+      display:flex;
+      gap:0.25rem;
+      padding:0 2rem;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:rgba(255,255,255,0.3);
+      flex-wrap:wrap;
+    }
+    .dash-tab {
+      padding:0.75rem 1.5rem;
+      font-size:0.9rem;
+      font-weight:500;
+      color:var(--muted);
+      cursor:pointer;
+      border-bottom:3px solid transparent;
+      transition:var(--transition);
+      background:none;
+      border-top:none;
+      border-left:none;
+      border-right:none;
+      font-family:'Inter',sans-serif;
+    }
+    .dash-tab:hover { color:var(--navy); }
+    .dash-tab.active {
+      color:var(--navy);
+      border-bottom-color:var(--green);
+      font-weight:600;
+    }
+    .dash-tab i { margin-right:8px; }
+
+    /* content */
+    .dash-content {
+      padding:2rem;
+    }
+    .tab-pane { display:none; }
+    .tab-pane.active { display:block; }
+
+    .tab-pane h3 {
+      font-size:1.1rem;
+      font-weight:600;
+      color:var(--navy);
+      margin-bottom:1.25rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .tab-pane h3 i { color:var(--green); }
+
+    /* forms */
+    .admin-form { max-width:600px; }
+    .admin-form .form-group { margin-bottom:1.1rem; }
+    .admin-form label {
+      display:block;
+      font-weight:500;
+      font-size:0.85rem;
+      color:var(--text);
+      margin-bottom:0.3rem;
+    }
+    .admin-form input, .admin-form textarea {
+      width:100%;
+      padding:0.75rem 1rem;
+      border:1.5px solid var(--border);
+      border-radius:var(--radius-sm);
+      font-family:'Inter',sans-serif;
+      font-size:0.9rem;
+      transition:var(--transition);
+      background:#fafbfc;
+    }
+    .admin-form input:focus, .admin-form textarea:focus {
+      outline:none;
+      border-color:var(--green);
+      background:var(--white);
+      box-shadow:0 0 0 4px rgba(155,194,51,0.1);
+    }
+    .admin-form textarea { height:90px; resize:vertical; }
+    .admin-form .btn-submit {
+      padding:0.75rem 2rem;
+      background:var(--green);
+      color:var(--navy);
+      border:none;
+      border-radius:var(--radius-sm);
+      font-weight:600;
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    .admin-form .btn-submit:hover {
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(155,194,51,0.3);
+    }
+
+    /* list items */
+    .list-container { margin-top:1.5rem; }
+    .list-container h4 {
+      font-size:0.95rem;
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:0.75rem;
+    }
+    .list-item {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0.75rem 1rem;
+      background:rgba(255,255,255,0.5);
+      border-radius:var(--radius-sm);
+      margin-bottom:0.5rem;
+      border:1px solid var(--border);
+      transition:var(--transition);
+    }
+    .list-item:hover { border-color:var(--green); background:rgba(255,255,255,0.8); }
+    .list-item .info strong { display:block; font-size:0.9rem; }
+    .list-item .info small { color:var(--muted); font-size:0.8rem; }
+    .list-item .actions { display:flex; gap:6px; }
+    .list-item .actions button {
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:4px 8px;
+      border-radius:6px;
+      font-size:0.9rem;
+      transition:var(--transition);
+    }
+    .list-item .actions .delete-btn { color:#dc2626; }
+    .list-item .actions .delete-btn:hover { background:#fee2e2; }
+    .empty-state { color:var(--muted); font-size:0.9rem; padding:0.5rem 0; }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width:768px) {
+      body { padding:1rem; }
+      .login-card { padding:2rem 1.5rem; }
+      .dash-header { padding:1rem 1.25rem; flex-direction:column; align-items:stretch; }
+      .dash-header .actions { justify-content:flex-start; flex-wrap:wrap; }
+      .stats-row { grid-template-columns:1fr 1fr; padding:1rem 1.25rem; gap:0.75rem; }
+      .stat-card { padding:0.9rem 1rem; }
+      .stat-card .info .number { font-size:1.3rem; }
+      .dash-tabs { padding:0 1.25rem; gap:0; }
+      .dash-tab { padding:0.6rem 1rem; font-size:0.8rem; }
+      .dash-content { padding:1.25rem; }
+      .admin-form { max-width:100%; }
+    }
+    @media (max-width:480px) {
+      .stats-row { grid-template-columns:1fr; }
+      .dash-header .brand h2 { font-size:1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- =========================================================
+       LOGIN CARD
+       ========================================================= -->
+  <div id="loginCard" class="login-card">
+    <img src="images/logo.jpeg" alt="Emarah Tea" class="logo" />
+    <h1>Emarah <span>Tea</span></h1>
+    <p class="sub">Admin Dashboard</p>
+    <input type="password" id="adminPassword" placeholder="Enter password" />
+    <div id="loginError" class="error"></div>
+    <button class="admin-btn" onclick="adminLogin()"><i class="fas fa-lock-open"></i> Login</button>
+    <p class="hint">Default: <strong>admin123</strong></p>
+  </div>
+
+  <!-- =========================================================
+       DASHBOARD (hidden until login)
+       ========================================================= -->
+  <div id="dashboard" class="dashboard">
+
+    <!-- Header -->
+    <div class="dash-header">
+      <div class="brand">
+        <img src="images/logo.jpeg" alt="Emarah Tea" />
+        <h2>Emarah <span>Tea</span></h2>
+      </div>
+      <div class="actions">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Site</a>
+        <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </div>
+
+    <!-- Stats Row – Enhanced -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-newspaper"></i></div>
+        <div class="info">
+          <div class="number" id="statNews">0</div>
+          <div class="label">News & Events</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <div class="info">
+          <div class="number" id="statTeam">0</div>
+          <div class="label">Team Members</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <div class="info">
+          <div class="number" id="statMessages">0</div>
+          <div class="label">Messages</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-mug-hot"></i></div>
+        <div class="info">
+          <div class="number">7</div>
+          <div class="label">Tea Variants <span class="trend">premium</span></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-calendar-check"></i></div>
+        <div class="info">
+          <div class="number">2022</div>
+          <div class="label">Established</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="dash-tabs">
+      <button class="dash-tab active" data-tab="newsTab" onclick="switchTab('newsTab')"><i class="fas fa-newspaper"></i> News</button>
+      <button class="dash-tab" data-tab="teamTab" onclick="switchTab('teamTab')"><i class="fas fa-users"></i> Team</button>
+      <button class="dash-tab" data-tab="messagesTab" onclick="switchTab('messagesTab')"><i class="fas fa-envelope"></i> Messages</button>
+    </div>
+
+    <!-- Content -->
+    <div class="dash-content">
+
+      <!-- NEWS TAB -->
+      <div id="newsTab" class="tab-pane active">
+        <h3><i class="fas fa-plus-circle"></i> Add News / Event</h3>
+        <form class="admin-form" id="newsForm">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="newsTitle" placeholder="e.g. New Blend Launch" required />
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="text" id="newsDate" placeholder="e.g. March 15, 2025" required />
+          </div>
+          <div class="form-group">
+            <label>Short Preview</label>
+            <textarea id="newsPreview" placeholder="Brief description shown on card" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Full Content (modal)</label>
+            <textarea id="newsFull" placeholder="Full article content" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" id="newsImage" placeholder="images/banner1.jpeg" />
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-plus"></i> Add News</button>
+        </form>
+
+        <div class="list-container">
+          <h4>Manage News</h4>
+          <div id="newsList"></div>
+        </div>
+      </div>
+
+      <!-- TEAM TAB -->
+      <div id="teamTab" class="tab-pane">
+        <h3><i class="fas fa-user-plus"></i> Add Team Member</h3>
+        <form class="admin-form" id="teamForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="teamName" placeholder="e.g. Ukasha Yau Ilyasu" required />
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <input type="text" id="teamRole" placeholder="e.g. CEO & Founder" required />
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea id="teamBio" placeholder="Short description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Icon (Font Awesome class)</label>
+            <input type="text" id="teamIcon" placeholder="fas fa-user-tie" value="fas fa-user" />
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-plus"></i> Add Member</button>
+        </form>
+
+        <div class="list-container">
+          <h4>Manage Team</h4>
+          <div id="teamList"></div>
+        </div>
+      </div>
+
+      <!-- MESSAGES TAB -->
+      <div id="messagesTab" class="tab-pane">
+        <h3><i class="fas fa-inbox"></i> Visitor Messages</h3>
+        <div id="messagesList"></div>
+      </div>
+
+    </div><!-- /dash-content -->
+  </div><!-- /dashboard -->
+</div><!-- /admin-wrapper -->
+
+<script>
+  // =========================================================
+  // DATA STORE (localStorage) – shared with index.html
+  // =========================================================
+  let newsData = JSON.parse(localStorage.getItem('emarah_news')) || [
+    { id: 1, date: 'March 15, 2025', title: '🌿 New Blend Launch: Moringa & Mint', preview: 'We\'re excited to introduce our latest creation – a refreshing blend of Moringa and Mint...', content: 'We are thrilled to introduce our latest creation – a refreshing blend of Moringa and Mint. Packed with antioxidants and a cool, invigorating finish, this tea is perfect for a midday boost. Available in stores next week!', image: 'images/banner2.jpeg' },
+    { id: 2, date: 'February 28, 2025', title: '🏆 Emarah Tea wins "Best Herbal Brand"', preview: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand"...', content: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand" at the Nigerian Food & Beverage Awards 2025. This recognition is a testament to our commitment to quality and natural wellness. Thank you for your support!', image: 'images/banner3.jpeg' },
+    { id: 3, date: 'January 20, 2025', title: '🌱 Community Workshop: Tea & Wellness', preview: 'Join us on February 10th for a free workshop on the benefits of herbal teas...', content: 'Join us on February 10th for a free workshop on the benefits of herbal teas, hosted at our Kano headquarters. Learn about the healing properties of our blends and enjoy a tasting session. Limited slots available – sign up now!', image: 'images/banner1.jpeg' },
+    { id: 4, date: 'December 10, 2024', title: '🎄 Holiday Special: Gift Boxes', preview: 'This holiday season, surprise your loved ones with our curated tea gift boxes...', content: 'This holiday season, surprise your loved ones with our curated tea gift boxes, featuring a selection of our most popular blends. Each box is beautifully packaged and perfect for sharing warmth and wellness. Order before December 20th!', image: 'images/banner2.jpeg' }
+  ];
+
+  let teamData = JSON.parse(localStorage.getItem('emarah_team')) || [
+    { id: 1, name: 'Ukasha Yau Ilyasu', role: 'CEO & Founder', bio: 'Visionary leader driving the brand\'s commitment to natural wellness and quality.', icon: 'fas fa-user-tie' },
+    { id: 2, name: 'Bilyaminu Haruna Ilyasu', role: 'Product Manager', bio: 'Oversees production, ensures every blend meets the highest standards of purity.', icon: 'fas fa-user-cog' },
+    { id: 3, name: 'Ahmad Ahmad Adam', role: 'QA & Marketing Lead', bio: 'Ensures quality assurance and brings Emarah Tea\'s message to the world.', icon: 'fas fa-user-check' }
+  ];
+
+  let messagesData = JSON.parse(localStorage.getItem('emarah_messages')) || [];
+
+  function saveData() {
+    localStorage.setItem('emarah_news', JSON.stringify(newsData));
+    localStorage.setItem('emarah_team', JSON.stringify(teamData));
+    localStorage.setItem('emarah_messages', JSON.stringify(messagesData));
+  }
+
+  // =========================================================
+  // RENDER FUNCTIONS
+  // =========================================================
+  function renderNewsList() {
+    const list = document.getElementById('newsList');
+    if (newsData.length === 0) {
+      list.innerHTML = '<div class="empty-state">No news items yet.</div>';
+      return;
+    }
+    list.innerHTML = newsData.map(item => `
+      <div class="list-item">
+        <div class="info"><strong>${item.title}</strong><small>${item.date}</small></div>
+        <div class="actions">
+          <button class="delete-btn" onclick="deleteNews(${item.id})"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderTeamList() {
+    const list = document.getElementById('teamList');
+    if (teamData.length === 0) {
+      list.innerHTML = '<div class="empty-state">No team members yet.</div>';
+      return;
+    }
+    list.innerHTML = teamData.map(member => `
+      <div class="list-item">
+        <div class="info"><strong>${member.name}</strong><small>${member.role}</small></div>
+        <div class="actions">
+          <button class="delete-btn" onclick="deleteTeam(${member.id})"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderMessages() {
+    const list = document.getElementById('messagesList');
+    if (messagesData.length === 0) {
+      list.innerHTML = '<div class="empty-state">No messages yet.</div>';
+      return;
+    }
+    list.innerHTML = messagesData.map((msg, idx) => `
+      <div class="list-item message-item">
+        <div class="info">
+          <strong>${msg.name}</strong> <span style="color:var(--muted);font-size:0.8rem;">(${msg.email})</span>
+          <small>${msg.message}</small>
+        </div>
+        <div class="actions">
+          <button class="delete-btn" onclick="deleteMessage(${idx})"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function updateStats() {
+    document.getElementById('statNews').textContent = newsData.length;
+    document.getElementById('statTeam').textContent = teamData.length;
+    document.getElementById('statMessages').textContent = messagesData.length;
+  }
+
+  function refreshAll() {
+    renderNewsList();
+    renderTeamList();
+    renderMessages();
+    updateStats();
+  }
+
+  // =========================================================
+  // AUTH
+  // =========================================================
+  const ADMIN_PASSWORD = 'admin123';
+
+  function adminLogin() {
+    const pwd = document.getElementById('adminPassword').value;
+    if (pwd === ADMIN_PASSWORD) {
+      document.getElementById('loginCard').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      refreshAll();
+    } else {
+      document.getElementById('loginError').textContent = 'Incorrect password. Try admin123';
+    }
+  }
+
+  // Enter key on password field
+  document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') adminLogin();
+  });
+
+  function logout() {
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('loginCard').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('loginError').textContent = '';
+  }
+
+  // =========================================================
+  // TABS
+  // =========================================================
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.dash-tab').forEach(el => el.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    document.querySelector(`.dash-tab[data-tab="${tabId}"]`).classList.add('active');
+  }
+
+  // =========================================================
+  // CRUD: NEWS
+  // =========================================================
+  document.getElementById('newsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const title = document.getElementById('newsTitle').value.trim();
+    const date = document.getElementById('newsDate').value.trim();
+    const preview = document.getElementById('newsPreview').value.trim();
+    const content = document.getElementById('newsFull').value.trim();
+    const image = document.getElementById('newsImage').value.trim() || 'images/banner1.jpeg';
+    if (!title || !date || !preview || !content) return alert('Please fill all fields.');
+    newsData.unshift({ id: Date.now(), date, title, preview, content, image });
+    saveData();
+    refreshAll();
+    this.reset();
+    document.getElementById('newsImage').value = '';
+  });
+
+  function deleteNews(id) {
+    if (confirm('Delete this news item?')) {
+      newsData = newsData.filter(item => item.id !== id);
+      saveData();
+      refreshAll();
+    }
+  }
+
+  // =========================================================
+  // CRUD: TEAM
+  // =========================================================
+  document.getElementById('teamForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('teamName').value.trim();
+    const role = document.getElementById('teamRole').value.trim();
+    const bio = document.getElementById('teamBio').value.trim();
+    const icon = document.getElementById('teamIcon').value.trim() || 'fas fa-user';
+    if (!name || !role || !bio) return alert('Please fill all fields.');
+    teamData.push({ id: Date.now(), name, role, bio, icon });
+    saveData();
+    refreshAll();
+    this.reset();
+    document.getElementById('teamIcon').value = 'fas fa-user';
+  });
+
+  function deleteTeam(id) {
+    if (confirm('Delete this team member?')) {
+      teamData = teamData.filter(m => m.id !== id);
+      saveData();
+      refreshAll();
+    }
+  }
+
+  // =========================================================
+  // CRUD: MESSAGES
+  // =========================================================
+  function deleteMessage(index) {
+    if (confirm('Delete this message?')) {
+      messagesData.splice(index, 1);
+      saveData();
+      refreshAll();
+    }
+  }
+
+  // =========================================================
+  // INIT
+  // =========================================================
+  console.log("Emarah Tea Admin – Password: admin123");
+</script>
+
+</body>
+</html>

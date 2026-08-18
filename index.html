@@ -109,8 +109,19 @@
       max-width:1200px; width:100%; padding:0 5%; gap:3rem;
     }
     .hero-content { flex:1; color:var(--white); }
-    .hero-content h1 { font-size:4.5rem; color:var(--white); line-height:1.1; margin-bottom:0.5rem; }
-    .hero-content h1 span { font-style:italic; color:var(--green); }
+    .hero-content h1 {
+      font-size:4.5rem;
+      color:var(--white);
+      line-height:1.1;
+      margin-bottom:0.5rem;
+    }
+    .hero-content h1 .brand-emarah {
+      color: var(--white);
+    }
+    .hero-content h1 .brand-tea {
+      color: var(--green);
+      font-style:italic;
+    }
     .hero-content .tagline {
       font-size:1.2rem;
       color:rgba(255,255,255,0.9);
@@ -134,7 +145,7 @@
     }
     .btn-outline-light:hover { background:var(--white); color:var(--navy); transform:translateY(-2px); }
 
-    /* ----- INFINITE SLIDER (faster speed) ----- */
+    /* ----- INFINITE SLIDER ----- */
     .hero-side-images {
       flex: 0 0 auto;
       width: 100%;
@@ -151,7 +162,7 @@
       display:flex;
       width: calc(200% + 50px);
       height:100%;
-      animation: scrollSlider 18s linear infinite; /* faster: 18s instead of 30s */
+      animation: scrollSlider 18s linear infinite;
     }
     .slider-track:hover { animation-play-state:paused; }
     .slide-item {
@@ -209,7 +220,7 @@
     .stat-box { text-align:center; background:var(--very-light-green); padding:1.5rem; border-radius:var(--radius); border:1px solid var(--border); }
     .stat-box h3 { font-family:'Poppins',sans-serif; font-size:2rem; color:var(--green); margin-bottom:0.2rem; }
 
-    /* ----- TEAM (updated) ----- */
+    /* ----- TEAM (dynamic) ----- */
     .team-section { padding:4rem 0 5rem; background:var(--very-light-green); text-align:center; scroll-margin-top:80px; }
     .team-section h2 { font-size:2.8rem; margin-bottom:1rem; }
     .team-grid {
@@ -268,7 +279,7 @@
     }
     .btn-whatsapp:hover { transform:scale(1.05); box-shadow:0 8px 25px rgba(37,211,102,0.5); color:var(--white); }
 
-    /* ----- NEWS & EVENTS (modal trigger) ----- */
+    /* ----- NEWS & EVENTS (dynamic) ----- */
     .news-section { padding:5rem 0; background:var(--white); scroll-margin-top:80px; }
     .news-section h2 { font-size:2.8rem; margin-bottom:0.5rem; text-align:center; }
     .news-grid {
@@ -316,7 +327,7 @@
     .modal-box .modal-date { color:var(--green); font-weight:600; font-size:0.9rem; }
     .modal-box p { color:var(--text); line-height:1.8; margin-top:0.8rem; }
 
-    /* ----- CONTACT ----- */
+    /* ----- CONTACT / messages ----- */
     .contact-section { padding:5rem 0; background:var(--white); scroll-margin-top:80px; }
     .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
     .contact-info h2 { font-size:2.8rem; margin-bottom:1.5rem; }
@@ -348,64 +359,33 @@
     .footer-bottom { text-align:center; font-size:0.9rem; color:rgba(255,255,255,0.4); }
 
     /* =========================================================
-       RESPONSIVE: hide "Emarah" text on small screens + extra padding
+       RESPONSIVE
        ========================================================= */
     @media (max-width: 768px) {
-      .hero-content h1 .brand-hide {
-        display: none;
-      }
-      .hero-content h1 {
-        font-size: 3.2rem;
-      }
-      .hero-content .tagline {
-        font-size: 1rem;
-        margin-top: 0.2rem;
-      }
-      /* only 100% natural badge – hide others */
-      .hero-content .badge-wrap .badge-item:not(.badge-natural) {
-        display: none;
-      }
-      /* extra padding to push content down on small screens */
-      .hero {
-        padding: 6rem 0 4rem 0;
-      }
-      .hero-container {
-        gap: 2rem;
-      }
+      .hero-content h1 .brand-hide { display:none; }
+      .hero-content h1 { font-size:3.2rem; }
+      .hero-content .tagline { font-size:1rem; margin-top:0.2rem; }
+      .hero-content .badge-wrap .badge-item:not(.badge-natural) { display:none; }
+      .hero { padding:6rem 0 4rem 0; }
+      .hero-container { gap:2rem; }
     }
-
     @media (max-width: 480px) {
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-      .hero-content .tagline {
-        font-size: 0.9rem;
-      }
-      .hero {
-        padding: 7rem 0 4rem 0;
-      }
+      .hero-content h1 { font-size:2.5rem; }
+      .hero-content .tagline { font-size:0.9rem; }
+      .hero { padding:7rem 0 4rem 0; }
     }
-
-    /* badge container */
     .badge-wrap {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      color: white;
-      font-size: 0.9rem;
-      justify-content: center;
+      margin-top:2rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.5rem;
+      color:white;
+      font-size:0.9rem;
+      justify-content:center;
     }
-    .badge-wrap .badge-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .badge-wrap .badge-item i {
-      color: var(--green);
-    }
+    .badge-wrap .badge-item { display:flex; align-items:center; gap:6px; }
+    .badge-wrap .badge-item i { color:var(--green); }
 
-    /* ----- responsive slider & others ----- */
     @media (max-width:1024px) {
       .hero-side-images { max-width:350px; aspect-ratio:1/1; }
       .slide-item { width:350px; }
@@ -462,13 +442,14 @@
     <a href="#shop" class="nav-cta"><i class="fab fa-whatsapp"></i> Order Now</a>
   </nav>
 
-  <!-- ========== HOME (hero + benefits) ========== -->
+  <!-- ========== HOME ========== -->
   <section id="home" class="hero" style="scroll-margin-top:80px;">
     <div class="hero-overlay"></div>
     <div class="hero-container">
       <div class="hero-content">
         <h1>
-          <span> EMARAH Tea</span>
+          <span class="brand-emarah">EMARAH</span>
+          <span class="brand-tea">Tea</span>
         </h1>
         <div class="tagline">Sip the freshness</div>
         <p>Natural goodness in every sip. Boost immunity, aid digestion, and refresh your mind with our premium herbal blends.</p>
@@ -476,14 +457,12 @@
           <a href="#shop" class="btn-primary"><i class="fas fa-leaf"></i> Choose Nature</a>
           <a href="#about" class="btn-outline-light">Learn More</a>
         </div>
-        <!-- only 100% natural badge visible on small screens, all on large -->
         <div class="badge-wrap">
           <span class="badge-item badge-natural"><i class="fas fa-check-circle"></i> 100% Natural</span>
           <span class="badge-item"><i class="fas fa-mug-hot"></i> Caffeine Free</span>
           <span class="badge-item"><i class="fas fa-ban"></i> No Artificial Colors</span>
         </div>
       </div>
-      <!-- Infinite Slider (only tea images, faster speed) -->
       <div class="hero-side-images">
         <div class="slider-track">
           <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger" /></div>
@@ -493,7 +472,6 @@
           <div class="slide-item"><img src="images/mint tea.jpeg" alt="Mint Tea" /></div>
           <div class="slide-item"><img src="images/doum fruit.jpeg" alt="Doum Fruit" /></div>
           <div class="slide-item"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry" /></div>
-          <!-- duplicate -->
           <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger" /></div>
           <div class="slide-item"><img src="images/ginger.jpeg" alt="Ginger Tea" /></div>
           <div class="slide-item"><img src="images/hibiscus.jpeg" alt="Hibiscus Tea" /></div>
@@ -545,15 +523,13 @@
     </div>
   </section>
 
-  <!-- ========== TEAM (updated) ========== -->
-  <div class="team-section">
+  <!-- ========== TEAM (dynamic) ========== -->
+  <div class="team-section" id="teamSection">
     <div class="container">
       <h2>Meet Our Team</h2>
       <p style="color:var(--muted); margin-bottom:0.5rem;">The dedicated people behind Emarah Tea's success.</p>
-      <div class="team-grid">
-        <div class="team-card"><div class="team-icon"><i class="fas fa-user-tie"></i></div><h4>Ukasha Yau Ilyasu</h4><div class="role">CEO & Founder</div><p>Visionary leader driving the brand's commitment to natural wellness and quality.</p></div>
-        <div class="team-card"><div class="team-icon"><i class="fas fa-user-cog"></i></div><h4>Bilyaminu Haruna Ilyasu</h4><div class="role">Product Manager</div><p>Oversees production, ensures every blend meets the highest standards of purity.</p></div>
-        <div class="team-card"><div class="team-icon"><i class="fas fa-user-check"></i></div><h4>Ahmad Ahmad Adam</h4><div class="role">QA & Marketing Lead</div><p>Ensures quality assurance and brings Emarah Tea's message to the world.</p></div>
+      <div class="team-grid" id="teamGrid">
+        <!-- injected by JS -->
       </div>
     </div>
   </div>
@@ -574,36 +550,13 @@
     </div>
   </section>
 
-  <!-- ========== NEWS & EVENTS (modal on click) ========== -->
+  <!-- ========== NEWS & EVENTS (dynamic) ========== -->
   <section id="news" class="news-section">
     <div class="container">
       <h2>News & Events</h2>
-      <p style="text-align:center; color:var(--muted);">Click on any card to see full details and images.</p>
+      <p style="text-align:center; color:var(--muted);">Click on any card to see full details.</p>
       <div class="news-grid" id="newsGrid">
-        <div class="news-card" data-id="1">
-          <span class="date">March 15, 2025</span>
-          <h4>🌿 New Blend Launch: Moringa & Mint</h4>
-          <p>We're excited to introduce our latest creation – a refreshing blend of Moringa and Mint...</p>
-          <span class="read-more">Read more →</span>
-        </div>
-        <div class="news-card" data-id="2">
-          <span class="date">February 28, 2025</span>
-          <h4>🏆 Emarah Tea wins "Best Herbal Brand"</h4>
-          <p>We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand"...</p>
-          <span class="read-more">Read more →</span>
-        </div>
-        <div class="news-card" data-id="3">
-          <span class="date">January 20, 2025</span>
-          <h4>🌱 Community Workshop: Tea & Wellness</h4>
-          <p>Join us on February 10th for a free workshop on the benefits of herbal teas...</p>
-          <span class="read-more">Read more →</span>
-        </div>
-        <div class="news-card" data-id="4">
-          <span class="date">December 10, 2024</span>
-          <h4>🎄 Holiday Special: Gift Boxes</h4>
-          <p>This holiday season, surprise your loved ones with our curated tea gift boxes...</p>
-          <span class="read-more">Read more →</span>
-        </div>
+        <!-- injected by JS -->
       </div>
     </div>
   </section>
@@ -629,9 +582,14 @@
         <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>emarahinvestment@gmail.com</p></div></div>
         <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4>Location</h4><p>Kano State, Nigeria</p></div></div>
       </div>
-      <div class="contact-form">
+      <div class="contact-form" id="contactForm">
         <h3>Send us a Message</h3>
-        <form><div class="form-group"><input type="text" placeholder="Your Name" required /></div><div class="form-group"><input type="email" placeholder="Your Email" required /></div><div class="form-group"><textarea placeholder="Your Message"></textarea></div><button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button></form>
+        <form id="messageForm">
+          <div class="form-group"><input type="text" id="msgName" placeholder="Your Name" required /></div>
+          <div class="form-group"><input type="email" id="msgEmail" placeholder="Your Email" required /></div>
+          <div class="form-group"><textarea id="msgContent" placeholder="Your Message" required></textarea></div>
+          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
       </div>
     </div>
   </section>
@@ -650,7 +608,106 @@
   <div id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
   <script>
-    // Mobile menu toggle
+    // =========================================================
+    // DATA STORE (localStorage) – shared with admin.html
+    // =========================================================
+    let newsData = JSON.parse(localStorage.getItem('emarah_news')) || [
+      { id: 1, date: 'March 15, 2025', title: '🌿 New Blend Launch: Moringa & Mint', preview: 'We\'re excited to introduce our latest creation – a refreshing blend of Moringa and Mint...', content: 'We are thrilled to introduce our latest creation – a refreshing blend of Moringa and Mint. Packed with antioxidants and a cool, invigorating finish, this tea is perfect for a midday boost. Available in stores next week!', image: 'images/banner2.jpeg' },
+      { id: 2, date: 'February 28, 2025', title: '🏆 Emarah Tea wins "Best Herbal Brand"', preview: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand"...', content: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand" at the Nigerian Food & Beverage Awards 2025. This recognition is a testament to our commitment to quality and natural wellness. Thank you for your support!', image: 'images/banner3.jpeg' },
+      { id: 3, date: 'January 20, 2025', title: '🌱 Community Workshop: Tea & Wellness', preview: 'Join us on February 10th for a free workshop on the benefits of herbal teas...', content: 'Join us on February 10th for a free workshop on the benefits of herbal teas, hosted at our Kano headquarters. Learn about the healing properties of our blends and enjoy a tasting session. Limited slots available – sign up now!', image: 'images/banner1.jpeg' },
+      { id: 4, date: 'December 10, 2024', title: '🎄 Holiday Special: Gift Boxes', preview: 'This holiday season, surprise your loved ones with our curated tea gift boxes...', content: 'This holiday season, surprise your loved ones with our curated tea gift boxes, featuring a selection of our most popular blends. Each box is beautifully packaged and perfect for sharing warmth and wellness. Order before December 20th!', image: 'images/banner2.jpeg' }
+    ];
+
+    let teamData = JSON.parse(localStorage.getItem('emarah_team')) || [
+      { id: 1, name: 'Ukasha Yau Ilyasu', role: 'CEO & Founder', bio: 'Visionary leader driving the brand\'s commitment to natural wellness and quality.', icon: 'fas fa-user-tie' },
+      { id: 2, name: 'Bilyaminu Haruna Ilyasu', role: 'Product Manager', bio: 'Oversees production, ensures every blend meets the highest standards of purity.', icon: 'fas fa-user-cog' },
+      { id: 3, name: 'Ahmad Ahmad Adam', role: 'QA & Marketing Lead', bio: 'Ensures quality assurance and brings Emarah Tea\'s message to the world.', icon: 'fas fa-user-check' }
+    ];
+
+    let messagesData = JSON.parse(localStorage.getItem('emarah_messages')) || [];
+
+    function saveData() {
+      localStorage.setItem('emarah_news', JSON.stringify(newsData));
+      localStorage.setItem('emarah_team', JSON.stringify(teamData));
+      localStorage.setItem('emarah_messages', JSON.stringify(messagesData));
+    }
+
+    // =========================================================
+    // RENDER FUNCTIONS
+    // =========================================================
+    function renderNews() {
+      const grid = document.getElementById('newsGrid');
+      grid.innerHTML = newsData.map(item => `
+        <div class="news-card" onclick="openNewsModal(${item.id})">
+          <span class="date">${item.date}</span>
+          <h4>${item.title}</h4>
+          <p>${item.preview}</p>
+          <span class="read-more">Read more →</span>
+        </div>
+      `).join('');
+    }
+
+    function renderTeam() {
+      const grid = document.getElementById('teamGrid');
+      grid.innerHTML = teamData.map(member => `
+        <div class="team-card">
+          <div class="team-icon"><i class="${member.icon}"></i></div>
+          <h4>${member.name}</h4>
+          <div class="role">${member.role}</div>
+          <p>${member.bio}</p>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================
+    // NEWS MODAL
+    // =========================================================
+    function openNewsModal(id) {
+      const item = newsData.find(n => n.id === id);
+      if (!item) return;
+      document.getElementById('modalDate').textContent = item.date;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalImage').src = item.image || 'images/banner1.jpeg';
+      document.getElementById('modalContent').textContent = item.content;
+      document.getElementById('newsModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', () => {
+      document.getElementById('newsModal').classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    document.getElementById('newsModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('newsModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // =========================================================
+    // CONTACT FORM – save to localStorage
+    // =========================================================
+    document.getElementById('messageForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('msgName').value.trim();
+      const email = document.getElementById('msgEmail').value.trim();
+      const message = document.getElementById('msgContent').value.trim();
+      if (!name || !email || !message) return alert('Please fill all fields.');
+      messagesData.push({ name, email, message });
+      saveData();
+      this.reset();
+      alert('Your message has been sent!');
+    });
+
+    // =========================================================
+    // MOBILE MENU + BACK TO TOP + BG ROTATION
+    // =========================================================
     document.querySelector('.menu-toggle').addEventListener('click', function() {
       document.querySelector('.nav-links').classList.toggle('open');
     });
@@ -660,14 +717,12 @@
       });
     });
 
-    // Back to top
     const backBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', function() {
       if (window.scrollY > 400) backBtn.classList.add('visible');
       else backBtn.classList.remove('visible');
     });
 
-    // ----- HERO BG ROTATION (banner1, banner2, banner3) -----
     const hero = document.querySelector('.hero');
     const banners = ['images/banner1.jpeg', 'images/banner2.jpeg', 'images/banner3.jpeg'];
     let bgIndex = 0;
@@ -676,76 +731,12 @@
       hero.style.backgroundImage = `url('${banners[bgIndex]}')`;
     }, 5000);
 
-    // ----- NEWS MODAL -----
-    const newsData = [
-      {
-        id: 1,
-        date: 'March 15, 2025',
-        title: '🌿 New Blend Launch: Moringa & Mint',
-        image: 'images/banner2.jpeg',
-        content: 'We are thrilled to introduce our latest creation – a refreshing blend of Moringa and Mint. Packed with antioxidants and a cool, invigorating finish, this tea is perfect for a midday boost. Available in stores next week!'
-      },
-      {
-        id: 2,
-        date: 'February 28, 2025',
-        title: '🏆 Emarah Tea wins "Best Herbal Brand"',
-        image: 'images/banner3.jpeg',
-        content: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand" at the Nigerian Food & Beverage Awards 2025. This recognition is a testament to our commitment to quality and natural wellness. Thank you for your support!'
-      },
-      {
-        id: 3,
-        date: 'January 20, 2025',
-        title: '🌱 Community Workshop: Tea & Wellness',
-        image: 'images/banner1.jpeg',
-        content: 'Join us on February 10th for a free workshop on the benefits of herbal teas, hosted at our Kano headquarters. Learn about the healing properties of our blends and enjoy a tasting session. Limited slots available – sign up now!'
-      },
-      {
-        id: 4,
-        date: 'December 10, 2024',
-        title: '🎄 Holiday Special: Gift Boxes',
-        image: 'images/banner2.jpeg',
-        content: 'This holiday season, surprise your loved ones with our curated tea gift boxes, featuring a selection of our most popular blends. Each box is beautifully packaged and perfect for sharing warmth and wellness. Order before December 20th!'
-      }
-    ];
-
-    const modal = document.getElementById('newsModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalDate = document.getElementById('modalDate');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalImage = document.getElementById('modalImage');
-    const modalContent = document.getElementById('modalContent');
-
-    document.querySelectorAll('.news-card').forEach(card => {
-      card.addEventListener('click', function() {
-        const id = parseInt(this.dataset.id);
-        const item = newsData.find(n => n.id === id);
-        if (item) {
-          modalDate.textContent = item.date;
-          modalTitle.textContent = item.title;
-          modalImage.src = item.image;
-          modalImage.alt = item.title;
-          modalContent.textContent = item.content;
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
-
-    function closeModal() {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    console.log("Emarah Tea – extra padding on mobile, slider speed increased to 18s.");
+    // =========================================================
+    // INIT
+    // =========================================================
+    renderNews();
+    renderTeam();
+    console.log("Emarah Tea – EMARAH is white, Tea is green.");
   </script>
 </body>
 </html>
-
