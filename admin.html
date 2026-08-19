@@ -4,16 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emarah Tea | Admin Dashboard</title>
-  <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="images/logo.jpeg" />
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    /* ----- RESET & VARIABLES ----- */
+    /* =========================================================
+       RESET & VARIABLES
+       ========================================================= */
     * { margin:0; padding:0; box-sizing:border-box; }
     :root {
       --navy: #032048;
@@ -43,7 +42,6 @@
       padding:1.5rem;
       position:relative;
     }
-    /* Full-page background image with dark overlay */
     body::before {
       content: '';
       position: fixed;
@@ -53,7 +51,6 @@
       filter: blur(6px) brightness(0.35);
       z-index: 0;
     }
-    /* scrollbar */
     ::-webkit-scrollbar { width:6px; }
     ::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); border-radius:8px; }
     ::-webkit-scrollbar-thumb { background:var(--green); border-radius:8px; }
@@ -66,7 +63,9 @@
       z-index:1;
     }
 
-    /* ----- LOGIN CARD ----- */
+    /* =========================================================
+       LOGIN CARD
+       ========================================================= */
     .login-card {
       max-width:420px;
       margin:0 auto;
@@ -146,10 +145,12 @@
     }
     .login-card .hint strong { color:var(--navy); }
 
-    /* ----- DASHBOARD (after login) ----- */
+    /* =========================================================
+       DASHBOARD
+       ========================================================= */
     .dashboard {
       display:none;
-      background:rgba(255,255,255,0.92);
+      background:rgba(255,255,255,0.94);
       backdrop-filter:blur(16px);
       border-radius:var(--radius);
       box-shadow:var(--shadow-lg), 0 0 50px rgba(0,0,0,0.25);
@@ -157,7 +158,7 @@
       border:1px solid rgba(255,255,255,0.1);
     }
 
-    /* header */
+    /* Header */
     .dash-header {
       display:flex;
       justify-content:space-between;
@@ -227,19 +228,19 @@
       color:#dc2626;
     }
 
-    /* stats row – enhanced */
+    /* Stats */
     .stats-row {
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+      grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
       gap:1rem;
       padding:1.5rem 2rem;
-      background:rgba(3,32,72,0.03);
+      background:rgba(3,32,72,0.02);
       border-bottom:1px solid rgba(0,0,0,0.05);
     }
     .stat-card {
       background:rgba(255,255,255,0.7);
       backdrop-filter:blur(4px);
-      padding:1.1rem 1.25rem;
+      padding:1rem 1.25rem;
       border-radius:var(--radius-sm);
       box-shadow:var(--shadow-sm);
       display:flex;
@@ -247,6 +248,7 @@
       gap:14px;
       border:1px solid rgba(255,255,255,0.5);
       transition:var(--transition);
+      cursor:default;
     }
     .stat-card:hover {
       transform:translateY(-2px);
@@ -254,39 +256,32 @@
       border-color:var(--green);
     }
     .stat-card .icon {
-      width:48px;
-      height:48px;
+      width:44px;
+      height:44px;
       border-radius:50%;
       background:var(--light-green);
       display:flex;
       align-items:center;
       justify-content:center;
       color:var(--green);
-      font-size:1.3rem;
+      font-size:1.2rem;
       flex-shrink:0;
     }
     .stat-card .info .number {
-      font-size:1.6rem;
+      font-size:1.4rem;
       font-weight:700;
       color:var(--navy);
       line-height:1.2;
     }
     .stat-card .info .label {
-      font-size:0.8rem;
+      font-size:0.75rem;
       color:var(--muted);
       font-weight:500;
-    }
-    .stat-card .info .trend {
-      font-size:0.7rem;
-      font-weight:600;
-      margin-left:6px;
-      padding:2px 8px;
-      border-radius:50px;
-      background:var(--light-green);
-      color:var(--dark-green);
+      letter-spacing:0.3px;
+      text-transform:uppercase;
     }
 
-    /* tabs */
+    /* Tabs */
     .dash-tabs {
       display:flex;
       gap:0.25rem;
@@ -297,7 +292,7 @@
     }
     .dash-tab {
       padding:0.75rem 1.5rem;
-      font-size:0.9rem;
+      font-size:0.85rem;
       font-weight:500;
       color:var(--muted);
       cursor:pointer;
@@ -317,80 +312,56 @@
     }
     .dash-tab i { margin-right:8px; }
 
-    /* content */
+    /* Content */
     .dash-content {
       padding:2rem;
     }
     .tab-pane { display:none; }
     .tab-pane.active { display:block; }
 
-    .tab-pane h3 {
+    .tab-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:1.5rem;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
+    .tab-header h3 {
       font-size:1.1rem;
       font-weight:600;
       color:var(--navy);
-      margin-bottom:1.25rem;
       display:flex;
       align-items:center;
       gap:8px;
     }
-    .tab-pane h3 i { color:var(--green); }
-
-    /* forms */
-    .admin-form { max-width:600px; }
-    .admin-form .form-group { margin-bottom:1.1rem; }
-    .admin-form label {
-      display:block;
-      font-weight:500;
-      font-size:0.85rem;
-      color:var(--text);
-      margin-bottom:0.3rem;
-    }
-    .admin-form input, .admin-form textarea {
-      width:100%;
-      padding:0.75rem 1rem;
-      border:1.5px solid var(--border);
-      border-radius:var(--radius-sm);
-      font-family:'Inter',sans-serif;
-      font-size:0.9rem;
-      transition:var(--transition);
-      background:#fafbfc;
-    }
-    .admin-form input:focus, .admin-form textarea:focus {
-      outline:none;
-      border-color:var(--green);
-      background:var(--white);
-      box-shadow:0 0 0 4px rgba(155,194,51,0.1);
-    }
-    .admin-form textarea { height:90px; resize:vertical; }
-    .admin-form .btn-submit {
-      padding:0.75rem 2rem;
+    .tab-header h3 i { color:var(--green); }
+    .tab-header .btn-add-modal {
       background:var(--green);
       color:var(--navy);
       border:none;
-      border-radius:var(--radius-sm);
+      padding:0.6rem 1.5rem;
+      border-radius:50px;
       font-weight:600;
-      font-size:0.9rem;
+      font-size:0.85rem;
       cursor:pointer;
       transition:var(--transition);
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
-    .admin-form .btn-submit:hover {
+    .tab-header .btn-add-modal:hover {
       transform:translateY(-2px);
       box-shadow:0 6px 20px rgba(155,194,51,0.3);
     }
 
-    /* list items */
-    .list-container { margin-top:1.5rem; }
-    .list-container h4 {
-      font-size:0.95rem;
-      font-weight:600;
-      color:var(--text);
-      margin-bottom:0.75rem;
-    }
+    /* List items */
+    .list-container { }
     .list-item {
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:0.75rem 1rem;
+      padding:0.7rem 1rem;
       background:rgba(255,255,255,0.5);
       border-radius:var(--radius-sm);
       margin-bottom:0.5rem;
@@ -398,9 +369,31 @@
       transition:var(--transition);
     }
     .list-item:hover { border-color:var(--green); background:rgba(255,255,255,0.8); }
-    .list-item .info strong { display:block; font-size:0.9rem; }
-    .list-item .info small { color:var(--muted); font-size:0.8rem; }
-    .list-item .actions { display:flex; gap:6px; }
+    .list-item .info {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex:1;
+      min-width:0;
+    }
+    .list-item .info .preview-img {
+      width:40px;
+      height:40px;
+      object-fit:cover;
+      border-radius:6px;
+      border:1px solid var(--border);
+      flex-shrink:0;
+    }
+    .list-item .info .text {
+      overflow:hidden;
+    }
+    .list-item .info .text strong { display:block; font-size:0.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .list-item .info .text small { color:var(--muted); font-size:0.8rem; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .list-item .actions {
+      display:flex;
+      gap:4px;
+      flex-shrink:0;
+    }
     .list-item .actions button {
       background:none;
       border:none;
@@ -410,9 +403,217 @@
       font-size:0.9rem;
       transition:var(--transition);
     }
+    .list-item .actions .edit-btn { color:var(--navy); }
+    .list-item .actions .edit-btn:hover { background:var(--light-green); }
     .list-item .actions .delete-btn { color:#dc2626; }
     .list-item .actions .delete-btn:hover { background:#fee2e2; }
-    .empty-state { color:var(--muted); font-size:0.9rem; padding:0.5rem 0; }
+    .empty-state { color:var(--muted); font-size:0.9rem; padding:1rem 0; text-align:center; }
+
+    /* Gallery grid in admin */
+    .gallery-grid-admin {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .gallery-grid-admin .gallery-item-admin {
+      position:relative;
+      border-radius:var(--radius-sm);
+      overflow:hidden;
+      aspect-ratio:1/1;
+      background:var(--very-light-green);
+      border:1px solid var(--border);
+      transition:var(--transition);
+    }
+    .gallery-grid-admin .gallery-item-admin:hover {
+      border-color:var(--green);
+      box-shadow:var(--shadow-md);
+    }
+    .gallery-grid-admin .gallery-item-admin img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .gallery-grid-admin .gallery-item-admin .gallery-actions {
+      position:absolute;
+      top:6px;
+      right:6px;
+      display:flex;
+      gap:4px;
+    }
+    .gallery-grid-admin .gallery-item-admin .gallery-actions button {
+      background:rgba(255,255,255,0.9);
+      border:none;
+      border-radius:50%;
+      width:30px;
+      height:30px;
+      cursor:pointer;
+      transition:var(--transition);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.8rem;
+      box-shadow:var(--shadow-sm);
+    }
+    .gallery-grid-admin .gallery-item-admin .gallery-actions .delete-btn { color:#dc2626; }
+    .gallery-grid-admin .gallery-item-admin .gallery-actions .delete-btn:hover { background:#fee2e2; }
+    .gallery-grid-admin .gallery-item-admin .gallery-actions .edit-btn { color:var(--navy); }
+    .gallery-grid-admin .gallery-item-admin .gallery-actions .edit-btn:hover { background:var(--light-green); }
+    .gallery-grid-admin .gallery-item-admin .caption-overlay {
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      background:rgba(0,0,0,0.5);
+      color:white;
+      padding:4px 8px;
+      font-size:0.7rem;
+      text-align:center;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+    }
+
+    /* =========================================================
+       MODAL
+       ========================================================= */
+    .modal-overlay {
+      position:fixed;
+      top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(4px);
+      z-index:2000;
+      display:none;
+      justify-content:center;
+      align-items:center;
+      padding:1.5rem;
+    }
+    .modal-overlay.active { display:flex; }
+    .modal-box {
+      background:var(--white);
+      max-width:600px;
+      width:100%;
+      border-radius:var(--radius);
+      padding:2rem;
+      box-shadow:var(--shadow-lg);
+      position:relative;
+      max-height:90vh;
+      overflow-y:auto;
+      animation:modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform:scale(0.95) translateY(20px); }
+      to { opacity:1; transform:scale(1) translateY(0); }
+    }
+    .modal-close {
+      position:absolute;
+      top:12px;
+      right:16px;
+      font-size:1.8rem;
+      cursor:pointer;
+      color:var(--muted);
+      background:none;
+      border:none;
+      transition:var(--transition);
+    }
+    .modal-close:hover { color:var(--navy); transform:rotate(90deg); }
+    .modal-box h2 {
+      font-family:'Inter',sans-serif;
+      font-size:1.3rem;
+      font-weight:600;
+      color:var(--navy);
+      margin-bottom:0.3rem;
+    }
+    .modal-box .modal-sub {
+      color:var(--muted);
+      font-size:0.85rem;
+      margin-bottom:1.5rem;
+    }
+
+    /* Modal form */
+    .modal-form { }
+    .modal-form .form-group { margin-bottom:1rem; }
+    .modal-form label {
+      display:block;
+      font-weight:500;
+      font-size:0.8rem;
+      color:var(--text);
+      margin-bottom:0.3rem;
+    }
+    .modal-form input, .modal-form textarea {
+      width:100%;
+      padding:0.7rem 1rem;
+      border:1.5px solid var(--border);
+      border-radius:var(--radius-sm);
+      font-family:'Inter',sans-serif;
+      font-size:0.9rem;
+      transition:var(--transition);
+      background:#fafbfc;
+    }
+    .modal-form input:focus, .modal-form textarea:focus {
+      outline:none;
+      border-color:var(--green);
+      background:var(--white);
+      box-shadow:0 0 0 4px rgba(155,194,51,0.08);
+    }
+    .modal-form textarea { height:70px; resize:vertical; }
+    .modal-form .image-upload-wrapper {
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .modal-form .image-upload-wrapper input[type="file"] {
+      flex:1;
+      padding:0.5rem;
+      border:1.5px dashed var(--border);
+      border-radius:var(--radius-sm);
+      background:#fafbfc;
+      cursor:pointer;
+      font-size:0.85rem;
+      min-width:150px;
+    }
+    .modal-form .image-upload-wrapper input[type="file"]:hover {
+      border-color:var(--green);
+      background:var(--white);
+    }
+    .modal-form .image-preview {
+      width:60px;
+      height:60px;
+      border-radius:var(--radius-sm);
+      object-fit:cover;
+      border:2px solid var(--border);
+      display:none;
+    }
+    .modal-form .image-preview.show { display:block; }
+    .modal-form .image-url-input {
+      margin-top:0.3rem;
+    }
+    .modal-form .btn-submit {
+      padding:0.7rem 2rem;
+      background:var(--green);
+      color:var(--navy);
+      border:none;
+      border-radius:50px;
+      font-weight:600;
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:var(--transition);
+      margin-top:0.5rem;
+      width:100%;
+    }
+    .modal-form .btn-submit:hover {
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(155,194,51,0.3);
+    }
+    .modal-form .btn-submit.btn-edit {
+      background:var(--navy);
+      color:var(--white);
+    }
+    .modal-form .btn-submit.btn-edit:hover {
+      background:var(--dark-navy);
+      box-shadow:0 6px 20px rgba(3,32,72,0.3);
+    }
 
     /* =========================================================
        RESPONSIVE
@@ -423,16 +624,23 @@
       .dash-header { padding:1rem 1.25rem; flex-direction:column; align-items:stretch; }
       .dash-header .actions { justify-content:flex-start; flex-wrap:wrap; }
       .stats-row { grid-template-columns:1fr 1fr; padding:1rem 1.25rem; gap:0.75rem; }
-      .stat-card { padding:0.9rem 1rem; }
-      .stat-card .info .number { font-size:1.3rem; }
-      .dash-tabs { padding:0 1.25rem; gap:0; }
-      .dash-tab { padding:0.6rem 1rem; font-size:0.8rem; }
+      .stat-card { padding:0.8rem 1rem; }
+      .stat-card .info .number { font-size:1.2rem; }
+      .dash-tabs { padding:0 1.25rem; gap:0; overflow-x:auto; flex-wrap:nowrap; }
+      .dash-tab { padding:0.5rem 1rem; font-size:0.75rem; white-space:nowrap; }
       .dash-content { padding:1.25rem; }
-      .admin-form { max-width:100%; }
+      .tab-header { flex-direction:column; align-items:stretch; }
+      .modal-box { padding:1.5rem; margin:0.5rem; }
+      .modal-form .image-upload-wrapper { flex-direction:column; align-items:stretch; }
+      .list-item { flex-wrap:wrap; gap:0.5rem; }
+      .list-item .info { flex:1 1 100%; }
+      .list-item .actions { flex-shrink:0; }
+      .gallery-grid-admin { grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); }
     }
     @media (max-width:480px) {
       .stats-row { grid-template-columns:1fr; }
       .dash-header .brand h2 { font-size:1.1rem; }
+      .gallery-grid-admin { grid-template-columns:repeat(auto-fill, minmax(100px,1fr)); }
     }
   </style>
 </head>
@@ -441,7 +649,7 @@
 <div class="admin-wrapper">
 
   <!-- =========================================================
-       LOGIN CARD
+       LOGIN
        ========================================================= -->
   <div id="loginCard" class="login-card">
     <img src="images/logo.jpeg" alt="Emarah Tea" class="logo" />
@@ -454,7 +662,7 @@
   </div>
 
   <!-- =========================================================
-       DASHBOARD (hidden until login)
+       DASHBOARD
        ========================================================= -->
   <div id="dashboard" class="dashboard">
 
@@ -470,131 +678,235 @@
       </div>
     </div>
 
-    <!-- Stats Row – Enhanced -->
-    <div class="stats-row" id="statsRow">
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-mug-hot"></i></div>
+        <div class="info"><div class="number" id="statProducts">0</div><div class="label">Products</div></div>
+      </div>
       <div class="stat-card">
         <div class="icon"><i class="fas fa-newspaper"></i></div>
-        <div class="info">
-          <div class="number" id="statNews">0</div>
-          <div class="label">News & Events</div>
-        </div>
+        <div class="info"><div class="number" id="statNews">0</div><div class="label">News</div></div>
       </div>
       <div class="stat-card">
         <div class="icon"><i class="fas fa-users"></i></div>
-        <div class="info">
-          <div class="number" id="statTeam">0</div>
-          <div class="label">Team Members</div>
-        </div>
+        <div class="info"><div class="number" id="statTeam">0</div><div class="label">Team</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-images"></i></div>
+        <div class="info"><div class="number" id="statGallery">0</div><div class="label">Gallery</div></div>
       </div>
       <div class="stat-card">
         <div class="icon"><i class="fas fa-envelope"></i></div>
-        <div class="info">
-          <div class="number" id="statMessages">0</div>
-          <div class="label">Messages</div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="icon"><i class="fas fa-mug-hot"></i></div>
-        <div class="info">
-          <div class="number">7</div>
-          <div class="label">Tea Variants <span class="trend">premium</span></div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="icon"><i class="fas fa-calendar-check"></i></div>
-        <div class="info">
-          <div class="number">2022</div>
-          <div class="label">Established</div>
-        </div>
+        <div class="info"><div class="number" id="statMessages">0</div><div class="label">Messages</div></div>
       </div>
     </div>
 
     <!-- Tabs -->
     <div class="dash-tabs">
-      <button class="dash-tab active" data-tab="newsTab" onclick="switchTab('newsTab')"><i class="fas fa-newspaper"></i> News</button>
+      <button class="dash-tab active" data-tab="productsTab" onclick="switchTab('productsTab')"><i class="fas fa-mug-hot"></i> Products</button>
+      <button class="dash-tab" data-tab="newsTab" onclick="switchTab('newsTab')"><i class="fas fa-newspaper"></i> News</button>
       <button class="dash-tab" data-tab="teamTab" onclick="switchTab('teamTab')"><i class="fas fa-users"></i> Team</button>
+      <button class="dash-tab" data-tab="galleryTab" onclick="switchTab('galleryTab')"><i class="fas fa-images"></i> Gallery</button>
       <button class="dash-tab" data-tab="messagesTab" onclick="switchTab('messagesTab')"><i class="fas fa-envelope"></i> Messages</button>
     </div>
 
     <!-- Content -->
     <div class="dash-content">
 
-      <!-- NEWS TAB -->
-      <div id="newsTab" class="tab-pane active">
-        <h3><i class="fas fa-plus-circle"></i> Add News / Event</h3>
-        <form class="admin-form" id="newsForm">
-          <div class="form-group">
-            <label>Title</label>
-            <input type="text" id="newsTitle" placeholder="e.g. New Blend Launch" required />
-          </div>
-          <div class="form-group">
-            <label>Date</label>
-            <input type="text" id="newsDate" placeholder="e.g. March 15, 2025" required />
-          </div>
-          <div class="form-group">
-            <label>Short Preview</label>
-            <textarea id="newsPreview" placeholder="Brief description shown on card" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Full Content (modal)</label>
-            <textarea id="newsFull" placeholder="Full article content" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Image URL</label>
-            <input type="text" id="newsImage" placeholder="images/banner1.jpeg" />
-          </div>
-          <button type="submit" class="btn-submit"><i class="fas fa-plus"></i> Add News</button>
-        </form>
-
-        <div class="list-container">
-          <h4>Manage News</h4>
-          <div id="newsList"></div>
+      <!-- PRODUCTS -->
+      <div id="productsTab" class="tab-pane active">
+        <div class="tab-header">
+          <h3><i class="fas fa-mug-hot"></i> Products</h3>
+          <button class="btn-add-modal" onclick="openAddModal('productModal', 'add')"><i class="fas fa-plus"></i> Add Product</button>
         </div>
+        <div class="list-container" id="productList"></div>
       </div>
 
-      <!-- TEAM TAB -->
+      <!-- NEWS -->
+      <div id="newsTab" class="tab-pane">
+        <div class="tab-header">
+          <h3><i class="fas fa-newspaper"></i> News & Events</h3>
+          <button class="btn-add-modal" onclick="openAddModal('newsModal', 'add')"><i class="fas fa-plus"></i> Add News</button>
+        </div>
+        <div class="list-container" id="adminNewsList"></div>
+      </div>
+
+      <!-- TEAM -->
       <div id="teamTab" class="tab-pane">
-        <h3><i class="fas fa-user-plus"></i> Add Team Member</h3>
-        <form class="admin-form" id="teamForm">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="teamName" placeholder="e.g. Ukasha Yau Ilyasu" required />
-          </div>
-          <div class="form-group">
-            <label>Role</label>
-            <input type="text" id="teamRole" placeholder="e.g. CEO & Founder" required />
-          </div>
-          <div class="form-group">
-            <label>Bio</label>
-            <textarea id="teamBio" placeholder="Short description" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Icon (Font Awesome class)</label>
-            <input type="text" id="teamIcon" placeholder="fas fa-user-tie" value="fas fa-user" />
-          </div>
-          <button type="submit" class="btn-submit"><i class="fas fa-plus"></i> Add Member</button>
-        </form>
-
-        <div class="list-container">
-          <h4>Manage Team</h4>
-          <div id="teamList"></div>
+        <div class="tab-header">
+          <h3><i class="fas fa-users"></i> Team Members</h3>
+          <button class="btn-add-modal" onclick="openAddModal('teamModal', 'add')"><i class="fas fa-plus"></i> Add Member</button>
         </div>
+        <div class="list-container" id="adminTeamList"></div>
       </div>
 
-      <!-- MESSAGES TAB -->
+      <!-- GALLERY -->
+      <div id="galleryTab" class="tab-pane">
+        <div class="tab-header">
+          <h3><i class="fas fa-images"></i> Gallery</h3>
+          <button class="btn-add-modal" onclick="openAddModal('galleryModal', 'add')"><i class="fas fa-plus"></i> Add Image</button>
+        </div>
+        <div class="gallery-grid-admin" id="adminGalleryList"></div>
+      </div>
+
+      <!-- MESSAGES -->
       <div id="messagesTab" class="tab-pane">
-        <h3><i class="fas fa-inbox"></i> Visitor Messages</h3>
-        <div id="messagesList"></div>
+        <div class="tab-header">
+          <h3><i class="fas fa-inbox"></i> Visitor Messages</h3>
+        </div>
+        <div id="adminMessagesList"></div>
       </div>
 
-    </div><!-- /dash-content -->
-  </div><!-- /dashboard -->
-</div><!-- /admin-wrapper -->
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     MODALS
+     ========================================================= -->
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('productModal')">&times;</button>
+    <h2 id="productModalTitle">Add Product</h2>
+    <p class="modal-sub" id="productModalSub">Add a new tea variant to your shop.</p>
+    <form class="modal-form" id="productForm" enctype="multipart/form-data">
+      <input type="hidden" id="prodEditId" value="" />
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" id="prodName" placeholder="e.g. Lemon & Ginger" required />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="prodDesc" placeholder="Brief description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <div class="image-upload-wrapper">
+          <input type="file" id="prodImageFile" accept="image/*" />
+          <img id="prodImagePreview" class="image-preview" alt="Preview" />
+          <input type="hidden" id="prodImage" value="" />
+        </div>
+        <input type="text" id="prodImageUrl" class="image-url-input" placeholder="Or enter image URL: images/lemon and ginger.jpeg" />
+      </div>
+      <div class="form-group">
+        <label>WhatsApp Link</label>
+        <input type="text" id="prodLink" placeholder="https://wa.me/2348034434320?text=I%20want%20to%20order..." />
+      </div>
+      <button type="submit" class="btn-submit" id="productSubmitBtn"><i class="fas fa-plus"></i> Add Product</button>
+    </form>
+  </div>
+</div>
+
+<!-- NEWS MODAL -->
+<div class="modal-overlay" id="newsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('newsModal')">&times;</button>
+    <h2 id="newsModalTitle">Add News</h2>
+    <p class="modal-sub" id="newsModalSub">Publish a new news or event article.</p>
+    <form class="modal-form" id="adminNewsForm" enctype="multipart/form-data">
+      <input type="hidden" id="newsEditId" value="" />
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="adminNewsTitle" placeholder="e.g. New Blend Launch" required />
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="text" id="adminNewsDate" placeholder="e.g. March 15, 2025" required />
+      </div>
+      <div class="form-group">
+        <label>Preview</label>
+        <textarea id="adminNewsPreview" placeholder="Short preview shown on card" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Full Content</label>
+        <textarea id="adminNewsFull" placeholder="Full article content" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Image</label>
+        <div class="image-upload-wrapper">
+          <input type="file" id="adminNewsImageFile" accept="image/*" />
+          <img id="adminNewsImagePreview" class="image-preview" alt="Preview" />
+          <input type="hidden" id="adminNewsImage" value="" />
+        </div>
+        <input type="text" id="adminNewsImageUrl" class="image-url-input" placeholder="Or enter image URL: images/banner1.jpeg" />
+      </div>
+      <button type="submit" class="btn-submit" id="newsSubmitBtn"><i class="fas fa-plus"></i> Add News</button>
+    </form>
+  </div>
+</div>
+
+<!-- TEAM MODAL -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('teamModal')">&times;</button>
+    <h2 id="teamModalTitle">Add Team Member</h2>
+    <p class="modal-sub" id="teamModalSub">Add a new member to your team.</p>
+    <form class="modal-form" id="adminTeamForm">
+      <input type="hidden" id="teamEditId" value="" />
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="adminTeamName" placeholder="e.g. Ukasha Yau Ilyasu" required />
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <input type="text" id="adminTeamRole" placeholder="e.g. CEO & Founder" required />
+      </div>
+      <div class="form-group">
+        <label>Bio</label>
+        <textarea id="adminTeamBio" placeholder="Short description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Icon (Font Awesome class)</label>
+        <input type="text" id="adminTeamIcon" placeholder="fas fa-user-tie" value="fas fa-user" />
+      </div>
+      <button type="submit" class="btn-submit" id="teamSubmitBtn"><i class="fas fa-plus"></i> Add Member</button>
+    </form>
+  </div>
+</div>
+
+<!-- GALLERY MODAL -->
+<div class="modal-overlay" id="galleryModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('galleryModal')">&times;</button>
+    <h2 id="galleryModalTitle">Add Gallery Image</h2>
+    <p class="modal-sub" id="galleryModalSub">Upload an image to the gallery.</p>
+    <form class="modal-form" id="galleryForm" enctype="multipart/form-data">
+      <input type="hidden" id="galleryEditId" value="" />
+      <div class="form-group">
+        <label>Image</label>
+        <div class="image-upload-wrapper">
+          <input type="file" id="galleryImageFile" accept="image/*" required />
+          <img id="galleryImagePreview" class="image-preview" alt="Preview" />
+          <input type="hidden" id="galleryImage" value="" />
+        </div>
+        <input type="text" id="galleryImageUrl" class="image-url-input" placeholder="Or enter image URL: images/event1.jpeg" />
+      </div>
+      <div class="form-group">
+        <label>Caption (optional)</label>
+        <input type="text" id="galleryCaption" placeholder="e.g. Tea tasting event" />
+      </div>
+      <button type="submit" class="btn-submit" id="gallerySubmitBtn"><i class="fas fa-plus"></i> Add Image</button>
+    </form>
+  </div>
+</div>
 
 <script>
   // =========================================================
   // DATA STORE (localStorage) – shared with index.html
   // =========================================================
+  let productsData = JSON.parse(localStorage.getItem('emarah_products')) || [
+    { id: 1, name: 'Lemon & Ginger', desc: 'Refreshes, revitalizes and supports healthy digestion.', image: 'images/lemon and ginger.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Lemon%20and%20Ginger%20Tea' },
+    { id: 2, name: 'Ginger Tea', desc: 'Warming, soothes the throat, and boosts circulation.', image: 'images/ginger.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Ginger%20Tea' },
+    { id: 3, name: 'Hibiscus Tea', desc: 'Supports heart health and rich in antioxidants.', image: 'images/hibiscus.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20Tea' },
+    { id: 4, name: 'Pure Lemon Tea', desc: 'Vitamin C rich, refreshing, and energizing.', image: 'images/lemon.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Pure%20Lemon%20Tea' },
+    { id: 5, name: 'Mint Tea', desc: 'Soothes, cools and refreshes your senses.', image: 'images/mint tea.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Mint%20Tea' },
+    { id: 6, name: 'Doum Fruit', desc: 'Exotic natural fruit flavor with unique health properties.', image: 'images/doum fruit.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Doum%20Fruit%20Tea' },
+    { id: 7, name: 'Hibiscus & Strawberry', desc: 'Sweet and fruity blend, packed with flavor.', image: 'images/strowberry.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20and%20Strawberry%20Tea' }
+  ];
+
   let newsData = JSON.parse(localStorage.getItem('emarah_news')) || [
     { id: 1, date: 'March 15, 2025', title: '🌿 New Blend Launch: Moringa & Mint', preview: 'We\'re excited to introduce our latest creation – a refreshing blend of Moringa and Mint...', content: 'We are thrilled to introduce our latest creation – a refreshing blend of Moringa and Mint. Packed with antioxidants and a cool, invigorating finish, this tea is perfect for a midday boost. Available in stores next week!', image: 'images/banner2.jpeg' },
     { id: 2, date: 'February 28, 2025', title: '🏆 Emarah Tea wins "Best Herbal Brand"', preview: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand"...', content: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand" at the Nigerian Food & Beverage Awards 2025. This recognition is a testament to our commitment to quality and natural wellness. Thank you for your support!', image: 'images/banner3.jpeg' },
@@ -608,78 +920,340 @@
     { id: 3, name: 'Ahmad Ahmad Adam', role: 'QA & Marketing Lead', bio: 'Ensures quality assurance and brings Emarah Tea\'s message to the world.', icon: 'fas fa-user-check' }
   ];
 
+  let galleryData = JSON.parse(localStorage.getItem('emarah_gallery')) || [
+    { id: 1, image: 'images/event1.jpeg', caption: 'Tea tasting event' },
+    { id: 2, image: 'images/event2.jpeg', caption: 'Community workshop' },
+    { id: 3, image: 'images/event3.jpeg', caption: 'Holiday celebration' },
+    { id: 4, image: 'images/event1.jpeg', caption: 'Morning tea session' },
+    { id: 5, image: 'images/event2.jpeg', caption: 'Product launch' },
+    { id: 6, image: 'images/event3.jpeg', caption: 'Team gathering' }
+  ];
+
   let messagesData = JSON.parse(localStorage.getItem('emarah_messages')) || [];
 
   function saveData() {
+    localStorage.setItem('emarah_products', JSON.stringify(productsData));
     localStorage.setItem('emarah_news', JSON.stringify(newsData));
     localStorage.setItem('emarah_team', JSON.stringify(teamData));
+    localStorage.setItem('emarah_gallery', JSON.stringify(galleryData));
     localStorage.setItem('emarah_messages', JSON.stringify(messagesData));
+  }
+
+  // =========================================================
+  // MODAL HELPERS
+  // =========================================================
+  let currentModalMode = 'add';
+
+  function openAddModal(modalId, mode) {
+    currentModalMode = mode;
+    const modal = document.getElementById(modalId);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    const form = modal.querySelector('form');
+    if (form) form.reset();
+    modal.querySelectorAll('.image-preview').forEach(el => el.classList.remove('show'));
+    modal.querySelectorAll('input[type="hidden"]').forEach(el => el.value = '');
+    modal.querySelectorAll('.image-url-input').forEach(el => el.value = '');
+    
+    if (mode === 'add') {
+      const titleMap = {
+        'productModal': 'Add Product',
+        'newsModal': 'Add News',
+        'teamModal': 'Add Team Member',
+        'galleryModal': 'Add Gallery Image'
+      };
+      const subMap = {
+        'productModal': 'Add a new tea variant to your shop.',
+        'newsModal': 'Publish a new news or event article.',
+        'teamModal': 'Add a new member to your team.',
+        'galleryModal': 'Upload an image to the gallery.'
+      };
+      document.getElementById(modalId + 'Title').textContent = titleMap[modalId] || 'Add Item';
+      document.getElementById(modalId + 'Sub').textContent = subMap[modalId] || '';
+      const submitBtn = document.getElementById(modalId.replace('Modal', 'SubmitBtn'));
+      if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fas fa-plus"></i> Add';
+        submitBtn.classList.remove('btn-edit');
+      }
+      const editIdField = document.getElementById(modalId.replace('Modal', 'EditId'));
+      if (editIdField) editIdField.value = '';
+      // For gallery, make file input required for add
+      if (modalId === 'galleryModal') {
+        const fileInput = document.getElementById('galleryImageFile');
+        if (fileInput) fileInput.required = true;
+      }
+    }
+  }
+
+  function openEditModal(modalId, itemId, type) {
+    currentModalMode = 'edit';
+    const modal = document.getElementById(modalId);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    let item;
+    if (type === 'product') item = productsData.find(p => p.id === itemId);
+    else if (type === 'news') item = newsData.find(n => n.id === itemId);
+    else if (type === 'team') item = teamData.find(t => t.id === itemId);
+    else if (type === 'gallery') item = galleryData.find(g => g.id === itemId);
+    if (!item) return;
+    
+    const editIdField = document.getElementById(modalId.replace('Modal', 'EditId'));
+    if (editIdField) editIdField.value = itemId;
+    
+    const titleMap = {
+      'productModal': 'Edit Product',
+      'newsModal': 'Edit News',
+      'teamModal': 'Edit Team Member',
+      'galleryModal': 'Edit Gallery Image'
+    };
+    const subMap = {
+      'productModal': 'Update the product details.',
+      'newsModal': 'Update the news article.',
+      'teamModal': 'Update the team member information.',
+      'galleryModal': 'Update the gallery image.'
+    };
+    document.getElementById(modalId + 'Title').textContent = titleMap[modalId] || 'Edit Item';
+    document.getElementById(modalId + 'Sub').textContent = subMap[modalId] || '';
+    const submitBtn = document.getElementById(modalId.replace('Modal', 'SubmitBtn'));
+    if (submitBtn) {
+      submitBtn.innerHTML = '<i class="fas fa-save"></i> Update';
+      submitBtn.classList.add('btn-edit');
+    }
+    
+    if (type === 'product') {
+      document.getElementById('prodName').value = item.name || '';
+      document.getElementById('prodDesc').value = item.desc || '';
+      document.getElementById('prodLink').value = item.link || '';
+      document.getElementById('prodImage').value = item.image || '';
+      if (item.image) {
+        const preview = document.getElementById('prodImagePreview');
+        preview.src = item.image;
+        preview.classList.add('show');
+        document.getElementById('prodImageUrl').value = item.image;
+      }
+    } else if (type === 'news') {
+      document.getElementById('adminNewsTitle').value = item.title || '';
+      document.getElementById('adminNewsDate').value = item.date || '';
+      document.getElementById('adminNewsPreview').value = item.preview || '';
+      document.getElementById('adminNewsFull').value = item.content || '';
+      document.getElementById('adminNewsImage').value = item.image || '';
+      if (item.image) {
+        const preview = document.getElementById('adminNewsImagePreview');
+        preview.src = item.image;
+        preview.classList.add('show');
+        document.getElementById('adminNewsImageUrl').value = item.image;
+      }
+    } else if (type === 'team') {
+      document.getElementById('adminTeamName').value = item.name || '';
+      document.getElementById('adminTeamRole').value = item.role || '';
+      document.getElementById('adminTeamBio').value = item.bio || '';
+      document.getElementById('adminTeamIcon').value = item.icon || 'fas fa-user';
+    } else if (type === 'gallery') {
+      document.getElementById('galleryImage').value = item.image || '';
+      if (item.image) {
+        const preview = document.getElementById('galleryImagePreview');
+        preview.src = item.image;
+        preview.classList.add('show');
+        document.getElementById('galleryImageUrl').value = item.image;
+      }
+      document.getElementById('galleryCaption').value = item.caption || '';
+      // Make file input not required for edit
+      const fileInput = document.getElementById('galleryImageFile');
+      if (fileInput) fileInput.required = false;
+    }
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(m => {
+        m.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+
+  // =========================================================
+  // IMAGE UPLOAD HELPERS
+  // =========================================================
+  function setupImageUpload(fileInputId, previewId, hiddenId, urlInputId) {
+    const fileInput = document.getElementById(fileInputId);
+    const preview = document.getElementById(previewId);
+    const hidden = document.getElementById(hiddenId);
+    const urlInput = document.getElementById(urlInputId);
+    if (!fileInput || !preview || !hidden || !urlInput) return;
+
+    fileInput.addEventListener('change', function(e) {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          preview.src = ev.target.result;
+          preview.classList.add('show');
+          hidden.value = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    urlInput.addEventListener('input', function() {
+      const val = this.value.trim();
+      if (val) {
+        preview.src = val;
+        preview.classList.add('show');
+        hidden.value = val;
+        fileInput.value = '';
+      } else {
+        preview.classList.remove('show');
+        hidden.value = '';
+      }
+    });
   }
 
   // =========================================================
   // RENDER FUNCTIONS
   // =========================================================
-  function renderNewsList() {
-    const list = document.getElementById('newsList');
+  function renderAdminProducts() {
+    const list = document.getElementById('productList');
+    if (!list) return;
+    if (productsData.length === 0) {
+      list.innerHTML = '<div class="empty-state">No products yet. Click "Add Product" to get started.</div>';
+      return;
+    }
+    list.innerHTML = productsData.map(p => `
+      <div class="list-item">
+        <div class="info">
+          <img src="${p.image || 'images/logo.jpeg'}" class="preview-img" alt="${p.name}" />
+          <div class="text">
+            <strong>${p.name}</strong>
+            <small>${p.desc.slice(0,60)}${p.desc.length > 60 ? '...' : ''}</small>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="edit-btn" onclick="openEditModal('productModal', ${p.id}, 'product')" title="Edit"><i class="fas fa-edit"></i></button>
+          <button class="delete-btn" onclick="deleteProduct(${p.id})" title="Delete"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderAdminNews() {
+    const list = document.getElementById('adminNewsList');
+    if (!list) return;
     if (newsData.length === 0) {
-      list.innerHTML = '<div class="empty-state">No news items yet.</div>';
+      list.innerHTML = '<div class="empty-state">No news items yet. Click "Add News" to get started.</div>';
       return;
     }
     list.innerHTML = newsData.map(item => `
       <div class="list-item">
-        <div class="info"><strong>${item.title}</strong><small>${item.date}</small></div>
+        <div class="info">
+          <img src="${item.image || 'images/logo.jpeg'}" class="preview-img" alt="${item.title}" />
+          <div class="text">
+            <strong>${item.title}</strong>
+            <small>${item.date} · ${item.preview.slice(0,50)}${item.preview.length > 50 ? '...' : ''}</small>
+          </div>
+        </div>
         <div class="actions">
-          <button class="delete-btn" onclick="deleteNews(${item.id})"><i class="fas fa-trash"></i></button>
+          <button class="edit-btn" onclick="openEditModal('newsModal', ${item.id}, 'news')" title="Edit"><i class="fas fa-edit"></i></button>
+          <button class="delete-btn" onclick="deleteAdminNews(${item.id})" title="Delete"><i class="fas fa-trash"></i></button>
         </div>
       </div>
     `).join('');
   }
 
-  function renderTeamList() {
-    const list = document.getElementById('teamList');
+  function renderAdminTeam() {
+    const list = document.getElementById('adminTeamList');
+    if (!list) return;
     if (teamData.length === 0) {
-      list.innerHTML = '<div class="empty-state">No team members yet.</div>';
+      list.innerHTML = '<div class="empty-state">No team members yet. Click "Add Member" to get started.</div>';
       return;
     }
-    list.innerHTML = teamData.map(member => `
+    list.innerHTML = teamData.map(m => `
       <div class="list-item">
-        <div class="info"><strong>${member.name}</strong><small>${member.role}</small></div>
+        <div class="info">
+          <div class="text">
+            <strong>${m.name}</strong>
+            <small>${m.role}</small>
+          </div>
+        </div>
         <div class="actions">
-          <button class="delete-btn" onclick="deleteTeam(${member.id})"><i class="fas fa-trash"></i></button>
+          <button class="edit-btn" onclick="openEditModal('teamModal', ${m.id}, 'team')" title="Edit"><i class="fas fa-edit"></i></button>
+          <button class="delete-btn" onclick="deleteAdminTeam(${m.id})" title="Delete"><i class="fas fa-trash"></i></button>
         </div>
       </div>
     `).join('');
   }
 
-  function renderMessages() {
-    const list = document.getElementById('messagesList');
+  function renderAdminGallery() {
+    const container = document.getElementById('adminGalleryList');
+    if (!container) return;
+    if (galleryData.length === 0) {
+      container.innerHTML = '<div class="empty-state">No gallery images yet. Click "Add Image" to get started.</div>';
+      return;
+    }
+    container.innerHTML = galleryData.map(item => `
+      <div class="gallery-item-admin">
+        <img src="${item.image}" alt="${item.caption || 'Gallery image'}" />
+        <div class="gallery-actions">
+          <button class="edit-btn" onclick="openEditModal('galleryModal', ${item.id}, 'gallery')" title="Edit"><i class="fas fa-edit"></i></button>
+          <button class="delete-btn" onclick="deleteGalleryItem(${item.id})" title="Delete"><i class="fas fa-trash"></i></button>
+        </div>
+        ${item.caption ? `<div class="caption-overlay">${item.caption}</div>` : ''}
+      </div>
+    `).join('');
+  }
+
+  function renderAdminMessages() {
+    const list = document.getElementById('adminMessagesList');
+    if (!list) return;
     if (messagesData.length === 0) {
       list.innerHTML = '<div class="empty-state">No messages yet.</div>';
       return;
     }
     list.innerHTML = messagesData.map((msg, idx) => `
-      <div class="list-item message-item">
+      <div class="list-item">
         <div class="info">
-          <strong>${msg.name}</strong> <span style="color:var(--muted);font-size:0.8rem;">(${msg.email})</span>
-          <small>${msg.message}</small>
+          <div class="text">
+            <strong>${msg.name}</strong>
+            <small>${msg.email} · ${msg.message}</small>
+          </div>
         </div>
         <div class="actions">
-          <button class="delete-btn" onclick="deleteMessage(${idx})"><i class="fas fa-trash"></i></button>
+          <button class="delete-btn" onclick="deleteAdminMessage(${idx})" title="Delete"><i class="fas fa-trash"></i></button>
         </div>
       </div>
     `).join('');
   }
 
   function updateStats() {
+    document.getElementById('statProducts').textContent = productsData.length;
     document.getElementById('statNews').textContent = newsData.length;
     document.getElementById('statTeam').textContent = teamData.length;
+    document.getElementById('statGallery').textContent = galleryData.length;
     document.getElementById('statMessages').textContent = messagesData.length;
   }
 
   function refreshAll() {
-    renderNewsList();
-    renderTeamList();
-    renderMessages();
+    renderAdminProducts();
+    renderAdminNews();
+    renderAdminTeam();
+    renderAdminGallery();
+    renderAdminMessages();
     updateStats();
   }
 
@@ -699,7 +1273,6 @@
     }
   }
 
-  // Enter key on password field
   document.getElementById('adminPassword').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') adminLogin();
   });
@@ -722,70 +1295,164 @@
   }
 
   // =========================================================
-  // CRUD: NEWS
+  // CRUD: PRODUCTS
   // =========================================================
-  document.getElementById('newsForm').addEventListener('submit', function(e) {
+  document.getElementById('productForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const title = document.getElementById('newsTitle').value.trim();
-    const date = document.getElementById('newsDate').value.trim();
-    const preview = document.getElementById('newsPreview').value.trim();
-    const content = document.getElementById('newsFull').value.trim();
-    const image = document.getElementById('newsImage').value.trim() || 'images/banner1.jpeg';
-    if (!title || !date || !preview || !content) return alert('Please fill all fields.');
-    newsData.unshift({ id: Date.now(), date, title, preview, content, image });
+    const editId = document.getElementById('prodEditId').value;
+    const name = document.getElementById('prodName').value.trim();
+    const desc = document.getElementById('prodDesc').value.trim();
+    const image = document.getElementById('prodImage').value.trim() || 'images/logo.jpeg';
+    const link = document.getElementById('prodLink').value.trim() || 'https://wa.me/2348034434320';
+    if (!name || !desc) return alert('Please fill in name and description.');
+
+    if (editId) {
+      const index = productsData.findIndex(p => p.id === parseInt(editId));
+      if (index !== -1) productsData[index] = { ...productsData[index], name, desc, image, link };
+    } else {
+      productsData.push({ id: Date.now(), name, desc, image, link });
+    }
     saveData();
     refreshAll();
     this.reset();
-    document.getElementById('newsImage').value = '';
+    document.getElementById('prodImage').value = '';
+    document.getElementById('prodImageUrl').value = '';
+    document.getElementById('prodImagePreview').classList.remove('show');
+    document.getElementById('prodImageFile').value = '';
+    document.getElementById('prodEditId').value = '';
+    closeModal('productModal');
   });
 
-  function deleteNews(id) {
-    if (confirm('Delete this news item?')) {
-      newsData = newsData.filter(item => item.id !== id);
-      saveData();
-      refreshAll();
+  function deleteProduct(id) {
+    if (!confirm('Delete this product?')) return;
+    productsData = productsData.filter(p => p.id !== id);
+    saveData();
+    refreshAll();
+  }
+
+  // =========================================================
+  // CRUD: NEWS
+  // =========================================================
+  document.getElementById('adminNewsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const editId = document.getElementById('newsEditId').value;
+    const title = document.getElementById('adminNewsTitle').value.trim();
+    const date = document.getElementById('adminNewsDate').value.trim();
+    const preview = document.getElementById('adminNewsPreview').value.trim();
+    const content = document.getElementById('adminNewsFull').value.trim();
+    const image = document.getElementById('adminNewsImage').value.trim() || 'images/banner1.jpeg';
+    if (!title || !date || !preview || !content) return alert('Please fill all fields.');
+
+    if (editId) {
+      const index = newsData.findIndex(n => n.id === parseInt(editId));
+      if (index !== -1) newsData[index] = { ...newsData[index], date, title, preview, content, image };
+    } else {
+      newsData.unshift({ id: Date.now(), date, title, preview, content, image });
     }
+    saveData();
+    refreshAll();
+    this.reset();
+    document.getElementById('adminNewsImage').value = '';
+    document.getElementById('adminNewsImageUrl').value = '';
+    document.getElementById('adminNewsImagePreview').classList.remove('show');
+    document.getElementById('adminNewsImageFile').value = '';
+    document.getElementById('newsEditId').value = '';
+    closeModal('newsModal');
+  });
+
+  function deleteAdminNews(id) {
+    if (!confirm('Delete this news?')) return;
+    newsData = newsData.filter(item => item.id !== id);
+    saveData();
+    refreshAll();
   }
 
   // =========================================================
   // CRUD: TEAM
   // =========================================================
-  document.getElementById('teamForm').addEventListener('submit', function(e) {
+  document.getElementById('adminTeamForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const name = document.getElementById('teamName').value.trim();
-    const role = document.getElementById('teamRole').value.trim();
-    const bio = document.getElementById('teamBio').value.trim();
-    const icon = document.getElementById('teamIcon').value.trim() || 'fas fa-user';
+    const editId = document.getElementById('teamEditId').value;
+    const name = document.getElementById('adminTeamName').value.trim();
+    const role = document.getElementById('adminTeamRole').value.trim();
+    const bio = document.getElementById('adminTeamBio').value.trim();
+    const icon = document.getElementById('adminTeamIcon').value.trim() || 'fas fa-user';
     if (!name || !role || !bio) return alert('Please fill all fields.');
-    teamData.push({ id: Date.now(), name, role, bio, icon });
+
+    if (editId) {
+      const index = teamData.findIndex(t => t.id === parseInt(editId));
+      if (index !== -1) teamData[index] = { ...teamData[index], name, role, bio, icon };
+    } else {
+      teamData.push({ id: Date.now(), name, role, bio, icon });
+    }
     saveData();
     refreshAll();
     this.reset();
-    document.getElementById('teamIcon').value = 'fas fa-user';
+    document.getElementById('adminTeamIcon').value = 'fas fa-user';
+    document.getElementById('teamEditId').value = '';
+    closeModal('teamModal');
   });
 
-  function deleteTeam(id) {
-    if (confirm('Delete this team member?')) {
-      teamData = teamData.filter(m => m.id !== id);
-      saveData();
-      refreshAll();
+  function deleteAdminTeam(id) {
+    if (!confirm('Delete this team member?')) return;
+    teamData = teamData.filter(m => m.id !== id);
+    saveData();
+    refreshAll();
+  }
+
+  // =========================================================
+  // CRUD: GALLERY
+  // =========================================================
+  document.getElementById('galleryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const editId = document.getElementById('galleryEditId').value;
+    const image = document.getElementById('galleryImage').value.trim();
+    const caption = document.getElementById('galleryCaption').value.trim();
+
+    if (!image) return alert('Please provide an image.');
+
+    if (editId) {
+      const index = galleryData.findIndex(g => g.id === parseInt(editId));
+      if (index !== -1) galleryData[index] = { ...galleryData[index], image, caption };
+    } else {
+      galleryData.push({ id: Date.now(), image, caption });
     }
+    saveData();
+    refreshAll();
+    this.reset();
+    document.getElementById('galleryImage').value = '';
+    document.getElementById('galleryImageUrl').value = '';
+    document.getElementById('galleryImagePreview').classList.remove('show');
+    document.getElementById('galleryImageFile').value = '';
+    document.getElementById('galleryEditId').value = '';
+    document.getElementById('galleryImageFile').required = true;
+    closeModal('galleryModal');
+  });
+
+  function deleteGalleryItem(id) {
+    if (!confirm('Delete this gallery image?')) return;
+    galleryData = galleryData.filter(g => g.id !== id);
+    saveData();
+    refreshAll();
   }
 
   // =========================================================
   // CRUD: MESSAGES
   // =========================================================
-  function deleteMessage(index) {
-    if (confirm('Delete this message?')) {
-      messagesData.splice(index, 1);
-      saveData();
-      refreshAll();
-    }
+  function deleteAdminMessage(index) {
+    if (!confirm('Delete this message?')) return;
+    messagesData.splice(index, 1);
+    saveData();
+    refreshAll();
   }
 
   // =========================================================
   // INIT
   // =========================================================
+  setupImageUpload('prodImageFile', 'prodImagePreview', 'prodImage', 'prodImageUrl');
+  setupImageUpload('adminNewsImageFile', 'adminNewsImagePreview', 'adminNewsImage', 'adminNewsImageUrl');
+  setupImageUpload('galleryImageFile', 'galleryImagePreview', 'galleryImage', 'galleryImageUrl');
+
   console.log("Emarah Tea Admin – Password: admin123");
 </script>
 

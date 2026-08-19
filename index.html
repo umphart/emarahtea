@@ -141,7 +141,7 @@
     }
     .btn-outline-light:hover { background:var(--white); color:var(--navy); transform:translateY(-2px); }
 
-    /* ----- INFINITE SLIDER ----- */
+    /* ----- INFINITE SLIDER (event images from gallery) ----- */
     .hero-side-images {
       flex: 0 0 auto;
       width: 100%;
@@ -175,7 +175,7 @@
     .slide-item img {
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:cover;
       border-radius:12px;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -189,9 +189,7 @@
       100% { transform:translateX(-50%); }
     }
 
-    /* ============================================================
-       RESTYLED NATURAL GOODNESS SECTION (Home) – now at bottom
-       ============================================================ */
+    /* ----- NATURAL GOODNESS ----- */
     .benefits {
       padding: 5rem 0;
       background: var(--white);
@@ -223,15 +221,8 @@
       background: rgba(3, 32, 72, 0.04);
       z-index: 0;
     }
-    .benefits .container {
-      position: relative;
-      z-index: 1;
-    }
-    .benefits h2 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.5px;
-    }
+    .benefits .container { position: relative; z-index: 1; }
+    .benefits h2 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
     .benefits .benefits-sub {
       font-size: 1.1rem;
       color: var(--muted);
@@ -267,9 +258,7 @@
       opacity: 0;
       transition: opacity 0.4s ease;
     }
-    .benefit-item:hover::after {
-      opacity: 1;
-    }
+    .benefit-item:hover::after { opacity: 1; }
     .benefit-item:hover {
       transform: translateY(-10px) scale(1.02);
       box-shadow: var(--shadow-lg);
@@ -299,10 +288,7 @@
       color: var(--green);
       transition: all 0.4s ease;
     }
-    .benefit-item:hover i {
-      color: var(--white);
-      transform: scale(1.1);
-    }
+    .benefit-item:hover i { color: var(--white); transform: scale(1.1); }
     .benefit-item h4 {
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
@@ -332,9 +318,7 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    .benefit-item:hover .benefit-number {
-      opacity: 1;
-    }
+    .benefit-item:hover .benefit-number { opacity: 1; }
 
     /* ----- ABOUT ----- */
     .about-section { padding:5rem 0; background:var(--white); scroll-margin-top:80px; }
@@ -347,7 +331,7 @@
     .stat-box { text-align:center; background:var(--very-light-green); padding:1.5rem; border-radius:var(--radius); border:1px solid var(--border); }
     .stat-box h3 { font-family:'Poppins',sans-serif; font-size:2rem; color:var(--green); margin-bottom:0.2rem; }
 
-    /* ----- TEAM (dynamic) ----- */
+    /* ----- TEAM ----- */
     .team-section { padding:4rem 0 5rem; background:var(--very-light-green); text-align:center; scroll-margin-top:80px; }
     .team-section h2 { font-size:2.8rem; margin-bottom:1rem; }
     .team-grid {
@@ -379,7 +363,7 @@
     .team-card .role { font-size:0.9rem; color:var(--green); font-weight:500; margin-bottom:0.8rem; }
     .team-card p { font-size:0.85rem; color:var(--muted); line-height:1.5; }
 
-    /* ----- SHOP ----- */
+    /* ----- SHOP / PRODUCTS (dynamic) ----- */
     .shop-section { padding:5rem 0; background:var(--very-light-green); scroll-margin-top:80px; }
     .shop-header { text-align:center; margin-bottom:3.5rem; }
     .shop-header h2 { font-size:2.8rem; color:var(--navy); }
@@ -406,7 +390,7 @@
     }
     .btn-whatsapp:hover { transform:scale(1.05); box-shadow:0 8px 25px rgba(37,211,102,0.5); color:var(--white); }
 
-    /* ----- NEWS & EVENTS (dynamic) ----- */
+    /* ----- NEWS ----- */
     .news-section { padding:5rem 0; background:var(--white); scroll-margin-top:80px; }
     .news-section h2 { font-size:2.8rem; margin-bottom:0.5rem; text-align:center; }
     .news-grid {
@@ -424,6 +408,41 @@
     .news-card h4 { font-family:'Poppins',sans-serif; font-size:1.2rem; margin-bottom:0.8rem; }
     .news-card p { color:var(--muted); font-size:0.95rem; line-height:1.7; }
     .news-card .read-more { color:var(--green); font-weight:600; font-size:0.9rem; margin-top:0.8rem; display:inline-block; }
+
+    /* ----- GALLERY ----- */
+    .gallery-section { padding:5rem 0; background:var(--very-light-green); }
+    .gallery-section h2 { font-size:2.8rem; margin-bottom:0.5rem; text-align:center; }
+    .gallery-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+      gap:2rem; margin-top:3rem;
+    }
+    .gallery-item {
+      border-radius:var(--radius); overflow:hidden;
+      box-shadow:var(--shadow-sm); transition:all 0.4s ease;
+      aspect-ratio:1/1;
+      background:var(--white);
+      position:relative;
+    }
+    .gallery-item img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform 0.4s ease;
+    }
+    .gallery-item:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+    .gallery-item:hover img { transform:scale(1.05); }
+    .gallery-item .gallery-caption {
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      background:linear-gradient(transparent, rgba(0,0,0,0.7));
+      color:white;
+      padding:1.5rem 1rem 0.8rem;
+      font-size:0.85rem;
+      opacity:0;
+      transition:opacity 0.3s ease;
+      text-align:center;
+    }
+    .gallery-item:hover .gallery-caption { opacity:1; }
 
     /* ----- MODAL ----- */
     .modal-overlay {
@@ -454,7 +473,7 @@
     .modal-box .modal-date { color:var(--green); font-weight:600; font-size:0.9rem; }
     .modal-box p { color:var(--text); line-height:1.8; margin-top:0.8rem; }
 
-    /* ----- CONTACT / messages ----- */
+    /* ----- CONTACT ----- */
     .contact-section { padding:5rem 0; background:var(--white); scroll-margin-top:80px; }
     .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
     .contact-info h2 { font-size:2.8rem; margin-bottom:1.5rem; }
@@ -489,9 +508,8 @@
        RESPONSIVE
        ========================================================= */
     @media (max-width: 768px) {
-      .hero-content h1 .brand-hide { display:none; }
       .hero-content h1 { font-size:3.2rem; }
-      .hero-content .tagline { font-size:1rem; margin-top:0.2rem; }
+      .hero-content .tagline { font-size:1rem; }
       .hero { padding:6rem 0 4rem 0; }
       .hero-container { gap:2rem; }
       .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
@@ -499,16 +517,34 @@
       .benefit-item { padding: 1.5rem 0.8rem; }
       .benefit-item .icon-wrap { width: 60px; height: 60px; }
       .benefit-item i { font-size: 1.8rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .contact-grid { grid-template-columns:1fr; gap:2rem; }
+      .about-image { order:-1; }
+      .about-image img { max-width:80%; margin:0 auto; }
+      .contact-form { margin-top:2rem; }
+      .nav-links {
+        display:none; flex-direction:column; position:absolute; top:72px; left:0; width:100%;
+        background:var(--navy); padding:2rem; box-shadow:var(--shadow-md);
+        border-bottom:3px solid var(--green); gap:1.2rem; align-items:center;
+      }
+      .nav-links.open { display:flex; }
+      .menu-toggle { display:block; }
     }
     @media (max-width: 480px) {
       .hero-content h1 { font-size:2.5rem; }
-      .hero-content .tagline { font-size:0.9rem; }
       .hero { padding:7rem 0 4rem 0; }
       .benefits-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .benefit-item .benefit-desc { display: none; }
       .benefit-item h4 { font-size: 0.9rem; }
       .benefit-item .icon-wrap { width: 50px; height: 50px; }
       .benefit-item i { font-size: 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .hero-buttons { flex-direction:column; width:100%; }
+      .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { width:100%; text-align:center; padding:0.8rem 1.5rem; }
+      .hero-side-images { aspect-ratio:1/1; }
+      .product-grid { grid-template-columns:1fr; gap:1.5rem; }
+      .about-stats { grid-template-columns:1fr; gap:1rem; }
+      .team-grid { grid-template-columns:1fr; }
     }
     .badge-wrap {
       margin-top:2rem;
@@ -534,32 +570,9 @@
       .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { padding:0.8rem 2rem; }
       .hero-side-images { max-width:100%; width:100%; aspect-ratio:1/1; }
       .slide-item { width:100%; }
-      .about-grid, .contact-grid { grid-template-columns:1fr; gap:2rem; }
-      .about-image { order:-1; }
-      .about-image img { max-width:80%; margin:0 auto; }
-      .contact-form { margin-top:2rem; }
-      .nav-links {
-        display:none; flex-direction:column; position:absolute; top:72px; left:0; width:100%;
-        background:var(--navy); padding:2rem; box-shadow:var(--shadow-md);
-        border-bottom:3px solid var(--green); gap:1.2rem; align-items:center;
-      }
-      .nav-links.open { display:flex; }
-      .menu-toggle { display:block; }
-    }
-    @media (max-width:480px) {
-      .hero-buttons { flex-direction:column; width:100%; }
-      .hero-buttons .btn-primary, .hero-buttons .btn-outline-light { width:100%; text-align:center; padding:0.8rem 1.5rem; }
-      .hero-side-images { aspect-ratio:1/1; }
-      .slide-item { padding:4px; }
-      .product-grid { grid-template-columns:1fr; gap:1.5rem; }
-      .about-stats { grid-template-columns:1fr; gap:1rem; }
-      .about-image img { max-width:100%; }
-      .team-grid { grid-template-columns:1fr; }
-      .footer-grid { grid-template-columns:1fr; text-align:center; gap:2rem; }
-      .footer-col ul li a { justify-content:center; }
     }
 
-    /* separate page styling */
+    /* page sections */
     .page-section {
       min-height: 100vh;
       display: flex;
@@ -571,20 +584,27 @@
     .page-section:nth-child(even) { background: var(--white); }
     .page-section .container { width: 100%; }
     .page-section h2 { font-size: 2.8rem; margin-bottom: 2rem; }
-    .page-section .subhead { color: var(--muted); margin-bottom: 2rem; }
     .hidden { display: none !important; }
+    #page-home { padding: 0; min-height: auto; background: transparent; }
 
-    /* home page special: no extra padding, hero + benefits fill */
-    #page-home {
-      padding: 0;
-      min-height: auto;
-      background: transparent;
+    /* Empty state for gallery */
+    .empty-gallery {
+      text-align:center;
+      padding:3rem;
+      color:var(--muted);
+      grid-column:1 / -1;
+    }
+    .empty-gallery i {
+      font-size:3rem;
+      color:var(--border);
+      margin-bottom:1rem;
+      display:block;
     }
   </style>
 </head>
 <body>
 
-  <!-- ========== FIXED NAVIGATION ========== -->
+  <!-- ========== NAVIGATION ========== -->
   <nav>
     <div class="nav-brand"><img src="images/logo.jpeg" alt="Emarah Tea Logo" /></div>
     <div class="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -593,24 +613,21 @@
       <a data-page="about">About</a>
       <a data-page="shop">Shop</a>
       <a data-page="news">News</a>
+      <a data-page="gallery">Gallery</a>
       <a data-page="contact">Contact</a>
     </div>
     <a data-page="shop" class="nav-cta"><i class="fab fa-whatsapp"></i> Order Now</a>
   </nav>
 
   <!-- ============================================================
-       PAGE: HOME — hero on top, benefits below (down page)
+       PAGE: HOME
   ============================================================ -->
   <section id="page-home" class="page-section">
-    <!-- HERO -->
     <div class="hero" style="min-height:85vh; width:100%; margin-top:0; padding:4rem 0; border-radius:0;">
       <div class="hero-overlay"></div>
       <div class="hero-container">
         <div class="hero-content">
-          <h1>
-            <span class="brand-emarah">EMARAH</span>
-            <span class="brand-tea">Tea</span>
-          </h1>
+          <h1><span class="brand-emarah">EMARAH</span> <span class="brand-tea">Tea</span></h1>
           <div class="tagline">Sip the freshness</div>
           <p>Natural goodness in every sip. Boost immunity, aid digestion, and refresh your mind with our premium herbal blends.</p>
           <div class="hero-buttons">
@@ -621,63 +638,25 @@
             <span class="badge-item badge-natural"><i class="fas fa-check-circle"></i> 100% Natural</span>
           </div>
         </div>
-        <div class="hero-side-images">
-          <div class="slider-track">
-            <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger" /></div>
-            <div class="slide-item"><img src="images/ginger.jpeg" alt="Ginger Tea" /></div>
-            <div class="slide-item"><img src="images/hibiscus.jpeg" alt="Hibiscus Tea" /></div>
-            <div class="slide-item"><img src="images/lemon.jpeg" alt="Pure Lemon Tea" /></div>
-            <div class="slide-item"><img src="images/mint tea.jpeg" alt="Mint Tea" /></div>
-            <div class="slide-item"><img src="images/doum fruit.jpeg" alt="Doum Fruit" /></div>
-            <div class="slide-item"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry" /></div>
-            <div class="slide-item"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger" /></div>
-            <div class="slide-item"><img src="images/ginger.jpeg" alt="Ginger Tea" /></div>
-            <div class="slide-item"><img src="images/hibiscus.jpeg" alt="Hibiscus Tea" /></div>
-            <div class="slide-item"><img src="images/lemon.jpeg" alt="Pure Lemon Tea" /></div>
-            <div class="slide-item"><img src="images/mint tea.jpeg" alt="Mint Tea" /></div>
-            <div class="slide-item"><img src="images/doum fruit.jpeg" alt="Doum Fruit" /></div>
-            <div class="slide-item"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry" /></div>
+        <div class="hero-side-images" id="heroSlider">
+          <div class="slider-track" id="sliderTrack">
+            <!-- Images will be dynamically populated from gallery -->
+            <div class="slide-item"><img src="images/logo.jpeg" alt="Emarah Tea" /></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- RESTYLED Natural Goodness section — NOW AT THE BOTTOM (down page) -->
     <div class="benefits" id="natural-goodness">
       <div class="container">
         <h2>Natural Goodness</h2>
         <p class="benefits-sub">Every sip delivers pure wellness — crafted from nature's finest ingredients.</p>
         <div class="benefits-grid">
-          <div class="benefit-item">
-            <span class="benefit-number">01</span>
-            <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
-            <h4>Boosts Immunity</h4>
-            <div class="benefit-desc">Rich in antioxidants to strengthen your body's natural defenses.</div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-number">02</span>
-            <div class="icon-wrap"><i class="fas fa-utensils"></i></div>
-            <h4>Aids Digestion</h4>
-            <div class="benefit-desc">Soothing herbal blend that supports a healthy gut and digestion.</div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-number">03</span>
-            <div class="icon-wrap"><i class="fas fa-head-side-cough"></i></div>
-            <h4>Relieves Cough &amp; Cold</h4>
-            <div class="benefit-desc">Warming herbs that ease throat irritation and clear congestion.</div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-number">04</span>
-            <div class="icon-wrap"><i class="fas fa-broom"></i></div>
-            <h4>Detoxifies the Body</h4>
-            <div class="benefit-desc">Flushes toxins naturally, leaving you feeling light and refreshed.</div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-number">05</span>
-            <div class="icon-wrap"><i class="fas fa-brain"></i></div>
-            <h4>Refreshes Mind &amp; Body</h4>
-            <div class="benefit-desc">Revitalizes your senses and promotes mental clarity and calm.</div>
-          </div>
+          <div class="benefit-item"><span class="benefit-number">01</span><div class="icon-wrap"><i class="fas fa-shield-alt"></i></div><h4>Boosts Immunity</h4><div class="benefit-desc">Rich in antioxidants to strengthen your body's natural defenses.</div></div>
+          <div class="benefit-item"><span class="benefit-number">02</span><div class="icon-wrap"><i class="fas fa-utensils"></i></div><h4>Aids Digestion</h4><div class="benefit-desc">Soothing herbal blend that supports a healthy gut and digestion.</div></div>
+          <div class="benefit-item"><span class="benefit-number">03</span><div class="icon-wrap"><i class="fas fa-head-side-cough"></i></div><h4>Relieves Cough &amp; Cold</h4><div class="benefit-desc">Warming herbs that ease throat irritation and clear congestion.</div></div>
+          <div class="benefit-item"><span class="benefit-number">04</span><div class="icon-wrap"><i class="fas fa-broom"></i></div><h4>Detoxifies the Body</h4><div class="benefit-desc">Flushes toxins naturally, leaving you feeling light and refreshed.</div></div>
+          <div class="benefit-item"><span class="benefit-number">05</span><div class="icon-wrap"><i class="fas fa-brain"></i></div><h4>Refreshes Mind &amp; Body</h4><div class="benefit-desc">Revitalizes your senses and promotes mental clarity and calm.</div></div>
         </div>
       </div>
     </div>
@@ -687,7 +666,7 @@
        PAGE: ABOUT
   ============================================================ -->
   <section id="page-about" class="page-section hidden">
-    <div class="container about-grid" style="gap:4rem; align-items:flex-start;">
+    <div class="container about-grid">
       <div class="about-content">
         <h2>About Our Company</h2>
         <h3><i class="fas fa-building" style="color:var(--green);"></i> The Company</h3>
@@ -706,37 +685,24 @@
           <div class="stat-box"><h3>100%</h3><p>Natural Ingredients</p></div>
         </div>
       </div>
-      <div class="about-image">
-        <img src="images/banner1.jpeg" alt="About Emarah Tea" />
-      </div>
+      <div class="about-image"><img src="images/banner1.jpeg" alt="About Emarah Tea" /></div>
     </div>
-    <!-- team (still part of about) -->
     <div class="team-section" style="padding:4rem 0 5rem; margin-top:2rem; width:100%;">
       <div class="container">
         <h2>Meet Our Team</h2>
         <p style="color:var(--muted); margin-bottom:0.5rem;">The dedicated people behind Emarah Tea's success.</p>
-        <div class="team-grid" id="teamGrid">
-          <!-- injected by JS -->
-        </div>
+        <div class="team-grid" id="teamGrid"></div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       PAGE: SHOP
+       PAGE: SHOP (dynamic products)
   ============================================================ -->
   <section id="page-shop" class="page-section hidden">
     <div class="container">
       <div class="shop-header"><h2>Our Premium Variants</h2><p>Sip the freshness with our thoughtfully crafted herbal blends.</p></div>
-      <div class="product-grid">
-        <div class="product-card"><img src="images/lemon and ginger.jpeg" alt="Lemon & Ginger" /><h3>Lemon & Ginger</h3><p>Refreshes, revitalizes and supports healthy digestion.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Lemon%20and%20Ginger%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-        <div class="product-card"><img src="images/ginger.jpeg" alt="Ginger Tea" /><h3>Ginger Tea</h3><p>Warming, soothes the throat, and boosts circulation.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Ginger%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-        <div class="product-card"><img src="images/hibiscus.jpeg" alt="Hibiscus Tea" /><h3>Hibiscus Tea</h3><p>Supports heart health and rich in antioxidants.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-        <div class="product-card"><img src="images/lemon.jpeg" alt="Pure Lemon Tea" /><h3>Pure Lemon Tea</h3><p>Vitamin C rich, refreshing, and energizing.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Pure%20Lemon%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-        <div class="product-card"><img src="images/mint tea.jpeg" alt="Mint Tea" /><h3>Mint Tea</h3><p>Soothes, cools and refreshes your senses.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Mint%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-        <div class="product-card"><img src="images/doum fruit.jpeg" alt="Doum Fruit Tea" /><h3>Doum Fruit</h3><p>Exotic natural fruit flavor with unique health properties.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Doum%20Fruit%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-        <div class="product-card"><img src="images/strowberry.jpeg" alt="Hibiscus & Strawberry" /><h3>Hibiscus & Strawberry</h3><p>Sweet and fruity blend, packed with flavor.</p><a href="https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20and%20Strawberry%20Tea" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a></div>
-      </div>
+      <div class="product-grid" id="productGrid"></div>
     </div>
   </section>
 
@@ -747,9 +713,18 @@
     <div class="container">
       <h2>News & Events</h2>
       <p style="color:var(--muted); margin-bottom:2rem;">Click on any card to see full details.</p>
-      <div class="news-grid" id="newsGrid">
-        <!-- injected by JS -->
-      </div>
+      <div class="news-grid" id="newsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PAGE: GALLERY (dynamic from admin)
+  ============================================================ -->
+  <section id="page-gallery" class="page-section hidden">
+    <div class="container">
+      <h2>Gallery</h2>
+      <p style="color:var(--muted); margin-bottom:2rem; text-align:center;">Moments from our events and tea experiences.</p>
+      <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </section>
 
@@ -765,7 +740,7 @@
         <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>emarahinvestment@gmail.com</p></div></div>
         <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4>Location</h4><p>Kano State, Nigeria</p></div></div>
       </div>
-      <div class="contact-form" id="contactForm">
+      <div class="contact-form">
         <h3>Send us a Message</h3>
         <form id="messageForm">
           <div class="form-group"><input type="text" id="msgName" placeholder="Your Name" required /></div>
@@ -792,19 +767,29 @@
   <footer>
     <div class="container footer-grid">
       <div class="footer-col"><h4>Emarah Tea</h4><p style="opacity:0.8; font-size:0.95rem;">Nature's goodness in a cup. 100% natural ingredients to refresh your body and mind.</p></div>
-      <div class="footer-col"><h4>Quick Links</h4><ul><li><a data-page="shop"><i class="fas fa-shopping-bag"></i> All Teas</a></li><li><a data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li><li><a data-page="news"><i class="fas fa-newspaper"></i> News</a></li><li><a data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a data-page="shop"><i class="fas fa-shopping-bag"></i> All Teas</a></li><li><a data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li><li><a data-page="news"><i class="fas fa-newspaper"></i> News</a></li><li><a data-page="gallery"><i class="fas fa-images"></i> Gallery</a></li><li><a data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li></ul></div>
       <div class="footer-col"><h4>Follow Us</h4><ul><li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li><li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li><li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li></ul></div>
     </div>
     <div class="footer-bottom container"><p>&copy; 2026 Emarah Tea. All rights reserved. <i class="fas fa-recycle" style="color:var(--green);"></i> Keep Environment Clean.</p></div>
   </footer>
 
-  <!-- Back to Top Button -->
+  <!-- Back to Top -->
   <div id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
   <script>
     // =========================================================
-    // DATA STORE (localStorage)
+    // DATA STORE (localStorage) – shared with admin.html
     // =========================================================
+    let productsData = JSON.parse(localStorage.getItem('emarah_products')) || [
+      { id: 1, name: 'Lemon & Ginger', desc: 'Refreshes, revitalizes and supports healthy digestion.', image: 'images/lemon and ginger.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Lemon%20and%20Ginger%20Tea' },
+      { id: 2, name: 'Ginger Tea', desc: 'Warming, soothes the throat, and boosts circulation.', image: 'images/ginger.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Ginger%20Tea' },
+      { id: 3, name: 'Hibiscus Tea', desc: 'Supports heart health and rich in antioxidants.', image: 'images/hibiscus.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20Tea' },
+      { id: 4, name: 'Pure Lemon Tea', desc: 'Vitamin C rich, refreshing, and energizing.', image: 'images/lemon.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Pure%20Lemon%20Tea' },
+      { id: 5, name: 'Mint Tea', desc: 'Soothes, cools and refreshes your senses.', image: 'images/mint tea.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Mint%20Tea' },
+      { id: 6, name: 'Doum Fruit', desc: 'Exotic natural fruit flavor with unique health properties.', image: 'images/doum fruit.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Doum%20Fruit%20Tea' },
+      { id: 7, name: 'Hibiscus & Strawberry', desc: 'Sweet and fruity blend, packed with flavor.', image: 'images/strowberry.jpeg', link: 'https://wa.me/2348034434320?text=I%20want%20to%20order%20the%20Hibiscus%20and%20Strawberry%20Tea' }
+    ];
+
     let newsData = JSON.parse(localStorage.getItem('emarah_news')) || [
       { id: 1, date: 'March 15, 2025', title: '🌿 New Blend Launch: Moringa & Mint', preview: 'We\'re excited to introduce our latest creation – a refreshing blend of Moringa and Mint...', content: 'We are thrilled to introduce our latest creation – a refreshing blend of Moringa and Mint. Packed with antioxidants and a cool, invigorating finish, this tea is perfect for a midday boost. Available in stores next week!', image: 'images/banner2.jpeg' },
       { id: 2, date: 'February 28, 2025', title: '🏆 Emarah Tea wins "Best Herbal Brand"', preview: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand"...', content: 'We are proud to announce that Emarah Tea has been awarded the "Best Herbal Tea Brand" at the Nigerian Food & Beverage Awards 2025. This recognition is a testament to our commitment to quality and natural wellness. Thank you for your support!', image: 'images/banner3.jpeg' },
@@ -818,17 +803,33 @@
       { id: 3, name: 'Ahmad Ahmad Adam', role: 'QA & Marketing Lead', bio: 'Ensures quality assurance and brings Emarah Tea\'s message to the world.', icon: 'fas fa-user-check' }
     ];
 
+    let galleryData = JSON.parse(localStorage.getItem('emarah_gallery')) || [];
     let messagesData = JSON.parse(localStorage.getItem('emarah_messages')) || [];
 
     function saveData() {
+      localStorage.setItem('emarah_products', JSON.stringify(productsData));
       localStorage.setItem('emarah_news', JSON.stringify(newsData));
       localStorage.setItem('emarah_team', JSON.stringify(teamData));
+      localStorage.setItem('emarah_gallery', JSON.stringify(galleryData));
       localStorage.setItem('emarah_messages', JSON.stringify(messagesData));
     }
 
     // =========================================================
-    // RENDER FUNCTIONS
+    // RENDER: PUBLIC
     // =========================================================
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+      grid.innerHTML = productsData.map(p => `
+        <div class="product-card">
+          <img src="${p.image || 'images/logo.jpeg'}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <a href="${p.link || 'https://wa.me/2348034434320'}" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Buy on WhatsApp</a>
+        </div>
+      `).join('');
+    }
+
     function renderNews() {
       const grid = document.getElementById('newsGrid');
       if (!grid) return;
@@ -845,46 +846,74 @@
     function renderTeam() {
       const grid = document.getElementById('teamGrid');
       if (!grid) return;
-      grid.innerHTML = teamData.map(member => `
+      grid.innerHTML = teamData.map(m => `
         <div class="team-card">
-          <div class="team-icon"><i class="${member.icon}"></i></div>
-          <h4>${member.name}</h4>
-          <div class="role">${member.role}</div>
-          <p>${member.bio}</p>
+          <div class="team-icon"><i class="${m.icon}"></i></div>
+          <h4>${m.name}</h4>
+          <div class="role">${m.role}</div>
+          <p>${m.bio}</p>
         </div>
       `).join('');
     }
 
-    // =========================================================
-    // NAVIGATION: show/hide pages
-    // =========================================================
-    const pages = {
-      home: document.getElementById('page-home'),
-      about: document.getElementById('page-about'),
-      shop: document.getElementById('page-shop'),
-      news: document.getElementById('page-news'),
-      contact: document.getElementById('page-contact')
-    };
-
-    function showPage(pageId) {
-      Object.keys(pages).forEach(key => {
-        pages[key].classList.toggle('hidden', key !== pageId);
-      });
-      document.querySelector('.nav-links').classList.remove('open');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      if (!grid) return;
+      
+      if (galleryData.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-gallery">
+            <i class="fas fa-images"></i>
+            <p>No gallery images uploaded yet.</p>
+            <p style="font-size:0.85rem;">Check back soon for updates!</p>
+          </div>
+        `;
+        return;
+      }
+      
+      grid.innerHTML = galleryData.map(item => `
+        <div class="gallery-item">
+          <img src="${item.image}" alt="${item.caption || 'Gallery image'}" loading="lazy" />
+          ${item.caption ? `<div class="gallery-caption">${item.caption}</div>` : ''}
+        </div>
+      `).join('');
     }
 
-    document.querySelectorAll('[data-page]').forEach(el => {
-      el.addEventListener('click', (e) => {
-        const page = el.getAttribute('data-page');
-        if (page && pages[page]) {
-          e.preventDefault();
-          showPage(page);
-        }
-      });
-    });
+    function renderHeroSlider() {
+      const track = document.getElementById('sliderTrack');
+      if (!track) return;
+      
+      // Use gallery images for the slider, fallback to default images
+      let sliderImages = [];
+      if (galleryData.length > 0) {
+        // Use gallery images (limit to 6 for performance)
+        sliderImages = galleryData.slice(0, 6);
+      } else {
+        // Fallback to default images
+        sliderImages = [
+          { image: 'images/event1.jpeg', caption: 'Event 1' },
+          { image: 'images/event2.jpeg', caption: 'Event 2' },
+          { image: 'images/event3.jpeg', caption: 'Event 3' }
+        ];
+      }
+      
+      // Duplicate for seamless infinite scroll
+      const allSlides = [...sliderImages, ...sliderImages];
+      
+      track.innerHTML = allSlides.map(item => `
+        <div class="slide-item">
+          <img src="${item.image}" alt="${item.caption || 'Emarah Tea event'}" />
+        </div>
+      `).join('');
+    }
 
-    showPage('home');
+    function refreshAll() {
+      renderProducts();
+      renderNews();
+      renderTeam();
+      renderGallery();
+      renderHeroSlider();
+    }
 
     // =========================================================
     // NEWS MODAL
@@ -918,7 +947,7 @@
     });
 
     // =========================================================
-    // CONTACT FORM – save to localStorage
+    // CONTACT FORM – saves to localStorage & opens WhatsApp
     // =========================================================
     document.getElementById('messageForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -928,9 +957,43 @@
       if (!name || !email || !message) return alert('Please fill all fields.');
       messagesData.push({ name, email, message });
       saveData();
+      const waMsg = `New message from ${name} (${email}): ${message}`;
+      window.open(`https://wa.me/2348034434320?text=${encodeURIComponent(waMsg)}`, '_blank');
       this.reset();
-      alert('Your message has been sent!');
+      alert('Your message has been sent to admin and WhatsApp!');
     });
+
+    // =========================================================
+    // NAVIGATION
+    // =========================================================
+    const pages = {
+      home: document.getElementById('page-home'),
+      about: document.getElementById('page-about'),
+      shop: document.getElementById('page-shop'),
+      news: document.getElementById('page-news'),
+      gallery: document.getElementById('page-gallery'),
+      contact: document.getElementById('page-contact')
+    };
+
+    function showPage(pageId) {
+      Object.keys(pages).forEach(key => {
+        pages[key].classList.toggle('hidden', key !== pageId);
+      });
+      document.querySelector('.nav-links').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-page]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const page = el.getAttribute('data-page');
+        if (page && pages[page]) {
+          e.preventDefault();
+          showPage(page);
+        }
+      });
+    });
+
+    showPage('home');
 
     // =========================================================
     // MOBILE MENU + BACK TO TOP + BG ROTATION
@@ -955,9 +1018,11 @@
       }, 5000);
     }
 
-    renderNews();
-    renderTeam();
-    console.log("Emarah Tea – Natural Goodness section moved to bottom of home page.");
+    // =========================================================
+    // INIT
+    // =========================================================
+    refreshAll();
+    console.log("Emarah Tea – Public site. Gallery loads from admin uploads.");
   </script>
 </body>
 </html>
